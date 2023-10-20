@@ -3,7 +3,7 @@ import classes from './Demo.module.css';
 import { IconX, IconCircleCheck, IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react';
 
 class NotificationServices {
-    static alert(message) {
+    static info(message) {
         notifications.show({
             title: 'Thông báo',
             message: message,

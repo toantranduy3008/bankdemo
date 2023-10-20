@@ -1,8 +1,9 @@
-import { Divider, Modal, Badge } from '@mantine/core';
+/* eslint-disable react/prop-types */
+import { Modal, Badge } from '@mantine/core';
 import { IconNorthStar, IconInfoCircle } from '@tabler/icons-react';
 
 import { numberWithCommas } from '../../services/Utilities';
-
+import classess from './Modal.module.css'
 const setBadge = (status) => {
     return (
         <Badge
@@ -18,13 +19,32 @@ export const TransactionResultModal = ({ data, opened, onClose }) => {
 
     return (
         <>
-            <Modal opened={opened} onClose={onClose} withCloseButton={false} size={"md"} centered className='flex flex-col'>
-                <Divider
-                    my="xs"
-                    label={<div className='flex flex-row items-center justify-start'><IconInfoCircle size={20} className='flex text-white fill-sky-500' /><p className='font-semibold text-slate-400 text-base'>Thông tin chuyển khoản</p></div>}
-                    variant='dashed'
-                    labelPosition="left"
-                />
+            <Modal
+                title={
+                    <div className='flex flex-row items-center justify-start gap-2'>
+                        <IconInfoCircle size={20} className='flex text-white fill-sky-500' />
+                        <p className='flex font-semibold text-white text-base'>Thông tin chuyển khoản</p>
+                    </div>
+                }
+                opened={opened}
+                onClose={onClose}
+                withCloseButton={true}
+                size={"md"}
+                centered
+                className='flex flex-col'
+                classNames={{
+                    header: classess.modalHeader,
+                    close: classess.closeButton
+                }}
+            >
+
+                <div className='flex flex-row w-full items-center justify-between'>
+                    <div className='flex flex-1 justify-start items-center gap-2'>
+                        <IconNorthStar size={18} className=' text-indigo-400' />
+                        <p className='text-slate-400 font-semibold items-center'>Ngân hàng nhận lệnh</p>
+                    </div>
+                    <p className='flex flex-1 justify-end items-center'>Đông Á Bank</p>
+                </div>
                 <div className='flex flex-row w-full items-center justify-between'>
                     <div className='flex flex-1 justify-start items-center gap-2'>
                         <IconNorthStar size={18} className=' text-indigo-400' />

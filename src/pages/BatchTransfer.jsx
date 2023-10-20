@@ -115,7 +115,7 @@ const BatchTransfer = () => {
         axios.post(`/api/payment/fundBatch`, requestBody, { headers: authHeader() })
             .then(res => {
                 const { f39, f63 } = res.data
-                NotificationServices.success(refCode)
+                NotificationServices.info(refCode)
                 setToAccount('')
                 setReceiver('')
                 setRefCode('')

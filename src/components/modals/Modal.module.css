@@ -1,0 +1,11 @@
+.modalHeader {
+    background: linear-gradient(292.23deg, #083B79 9.46%, #0B4C9A 94.57%);
+}
+
+.closeButton {
+    color: white;
+}
+
+.closeButton:hover {
+    background-color: transparent;
+}
