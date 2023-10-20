@@ -143,7 +143,7 @@ const BatchTransfer = () => {
         <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-start items-center">
             <div className="flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4">
                 {/* Thông tin chuyển khoản */}
-                <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-0 lg:p-2">
+                <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2">
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base text-slate-400">Tài khoản nguồn</p>
@@ -211,18 +211,18 @@ const BatchTransfer = () => {
                 <Divider size="xs" variant="dashed" orientation="vertical" className="xs:hidden lg:block" />
 
                 {/* Thông tin giao dịch con */}
-                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-0 lg:p-2">
+                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 bg-gradient-to-b from-[#C9D6FF] to-[#E2E2E2]">
                     <div className="flex flex-row justify-start items-center">
                         <div className="flex flex-1 flex-row text-slate-400 font-semibold justify-start items-center gap-2">
                             <p className="xs: hidden xl:block">Giao dịch:</p>
                             <Badge color={listTransaction.length < 10 ? 'blue' : 'green'} className="flex items-start h-full">{listTransaction.length}/10</Badge>
 
                         </div>
-                        <p className="flex flex-1 justify-end text-slate-400 font-semibold">{numberWithCommas(totalAmount)}</p>
+                        <p className="flex flex-1 justify-end text-gray-400 font-semibold">{numberWithCommas(totalAmount)}</p>
                     </div>
                     <div className="flex flex-row items-center justify-between gap-2">
                         <div className="flex flex-row flex-grow w-3/4 justify-start items-center gap-2">
-                            <p className="flex text-base text-slate-400">Thông tin giao dịch </p>
+                            <p className="flex text-base text-gray-400">Thông tin giao dịch </p>
                             <Divider my="sm" variant="dashed" className="flex flex-grow" />
                         </div>
 
