@@ -52,7 +52,7 @@ const BatchTransfer = () => {
     const handleSearchAccount = () => {
         if (toAccount) {
             setLoadingAccount(true)
-            axios.get(`/api/payment/investigatename?creditorAgent=970406&toAccount=${toAccount}`, { headers: authHeader() })
+            axios.get(`/bankdemo/api/payment/investigatename?creditorAgent=970406&toAccount=${toAccount}`, { headers: authHeader() })
                 .then(res => {
                     const { f39, f63, f120 } = res.data
                     if (f39 !== '00') {
@@ -112,7 +112,7 @@ const BatchTransfer = () => {
         }
 
         setLoadingTransfer(true)
-        axios.post(`/api/payment/fundBatch`, requestBody, { headers: authHeader() })
+        axios.post(`/bankdemo/api/payment/fundBatch`, requestBody, { headers: authHeader() })
             .then(res => {
                 const { f39, f63 } = res.data
                 NotificationServices.info(refCode)

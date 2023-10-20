@@ -24,7 +24,7 @@ const Login = () => {
 
     const handleLogin = () => {
         setLoading(true)
-        axios.post('/api/auth/signin', {
+        axios.post('/bankdemo/api/auth/signin', {
             username: username,
             password: password
         })
@@ -34,14 +34,14 @@ const Login = () => {
                 navigate('/bankdemo/home')
             })
             .catch(err => {
-                const { status, statusText } = err.response
-                NotificationServices.error(`${status}: ${statusText}`)
+                const { status } = err.response
+                NotificationServices.error(`${status}: Đăng nhập không thành công!`)
             })
             .finally(() => setLoading(false))
     }
     return (
-        <div className="flex flex-col w-full h-screen bg-slate-300 bg-[url('./napas-background.jpg')] bg-contain bg-repeat-y justify-center items-center">
-            <div className="bg-white w-1/3 h-1/3 flex flex-col justify-start items-center shadow-sm bg-opacity-95 p-4">
+        <div className="flex flex-col w-full h-screen bg-slate-300 bg-[url('/napas-background.jpg')] bg-contain bg-repeat-y justify-center items-center">
+            <div className="bg-white w-1/3 h-1/2 xs:h-full md:h-1/2 flex flex-col justify-start items-center shadow-sm bg-opacity-95 p-4">
                 <Fieldset legend="Thông tin đăng nhập" className="flex flex-col w-full h-full justify-center gap-5">
                     <TextInput
                         label="Tài khoản"

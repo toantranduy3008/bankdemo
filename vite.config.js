@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://qrrealtime-dev.napas.com.vn/bankdemo/",
+        target: "https://172.30.17.115:8082/",
         changeOrigin: true,
         secure: false,
       },

@@ -53,7 +53,7 @@ const Inquiry = () => {
             f63: orderId
         }
 
-        axios.post('/api/payment/tranStatus', requestBody, { headers: authHeader() })
+        axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
             .then(res => {
                 setData(res.data.payload)
                 if (res.data.payload.length === 0) {
