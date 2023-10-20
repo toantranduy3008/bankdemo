@@ -1,14 +1,13 @@
 import { useState } from "react"
-import { Button, TextInput, Table, Badge, Loader, Accordion } from "@mantine/core"
+import { Button, TextInput, Badge, Loader, Accordion } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
-
 import dayjs from "dayjs"
 import NotificationServices from "../services/notificationServices/NotificationServices"
 import { authHeader } from "../services/AuthServices"
 import axios from "axios"
 import { numberWithCommas } from "../services/Utilities"
-
 import { IconNorthStar, IconDiscountCheck, IconLoader, IconX } from "@tabler/icons-react"
+
 const Inquiry = () => {
     const [date, setDate] = useState(new Date());
     const [orderId, setOrderId] = useState('')
@@ -32,20 +31,6 @@ const Inquiry = () => {
         )
     }
 
-    const rows = data.map((e, index) => (
-        <Table.Tr key={index}>
-            <Table.Td>{index + 1}</Table.Td>
-            <Table.Td>Đông Á Bank</Table.Td>
-            <Table.Td>{e.to_account}</Table.Td>
-            <Table.Td>{e.f120}</Table.Td>
-            <Table.Td>{e.local_time}</Table.Td>
-            <Table.Td>{e.amount}</Table.Td>
-            <Table.Td>{e.trans_content}</Table.Td>
-            <Table.Td>{setBadge(e.ben_respcode)}</Table.Td>
-            <Table.Td>{setBadge(e.respcode)}</Table.Td>
-        </Table.Tr>
-    ))
-
     const handleSearch = () => {
         setLoading(true)
         const requestBody = {
@@ -57,7 +42,7 @@ const Inquiry = () => {
             .then(res => {
                 setData(res.data.payload)
                 if (res.data.payload.length === 0) {
-                    NotificationServices.warning(`Không tìm thấy giao dịch`)
+                    NotificationServices.info(`Không tìm thấy giao dịch`)
                 }
 
             })
@@ -255,30 +240,6 @@ const Inquiry = () => {
                     ))}
                 </Accordion>
             </div>
-            {data.length > 0 && 1 === 0 &&
-                <div className="flex flex-col w-full h-full justify-start items-center">
-                    <div className="flex w-full h-full justify-start items-center">
-                        <Table.ScrollContainer minWidth={800} type="native" className="w-full">
-                            <Table highlightOnHover highlightOnHoverColor="#EDF2FF">
-                                <Table.Thead>
-                                    <Table.Tr>
-                                        <Table.Th>#</Table.Th>
-                                        <Table.Th>Ngân hàng thụ hưởng</Table.Th>
-                                        <Table.Th>Tài khoản nhận</Table.Th>
-                                        <Table.Th>Tên người nhận</Table.Th>
-                                        <Table.Th>Ngày giao dịch</Table.Th>
-                                        <Table.Th>Số tiền</Table.Th>
-                                        <Table.Th>Nội dung chuyển khoản</Table.Th>
-                                        <Table.Th>Trạng thái giao dịch tại NHTH</Table.Th>
-                                        <Table.Th>Trạng thái giao dịch tại Napas</Table.Th>
-                                    </Table.Tr>
-                                </Table.Thead>
-                                <Table.Tbody>{rows}</Table.Tbody>
-                            </Table>
-                        </Table.ScrollContainer>
-                    </div>
-                </div>
-            }
         </div>
     )
 }

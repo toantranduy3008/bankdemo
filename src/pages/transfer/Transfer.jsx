@@ -1,5 +1,4 @@
 import { useState } from "react"
-
 import { Divider, TextInput, Loader, Textarea, Button, NumberInput } from "@mantine/core"
 import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
 import classes from './Transfer.module.css'
@@ -8,6 +7,7 @@ import { formatVietnamese } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import axios from "axios"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
+
 const Transfer = () => {
     const userInfo = getCurrentUser()
     const [toAccount, setToAccount] = useState('')

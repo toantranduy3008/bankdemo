@@ -1,18 +1,17 @@
 
 {/* react packages */ }
 import { useState } from "react"
-
 {/* mantine packages */ }
 import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button } from "@mantine/core"
 import classes from './Demo.module.css'
 import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus } from "@tabler/icons-react"
-
 import axios from "axios"
 import { numberWithCommas } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import { getCurrentUser, authHeader } from "../../services/AuthServices"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
 import { formatVietnamese } from "../../services/Utilities"
+
 const BatchTransfer = () => {
     const userInfo = getCurrentUser()
     const [listTransaction, setListTransaction] = useState([])
