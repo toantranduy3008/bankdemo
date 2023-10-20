@@ -105,9 +105,9 @@ const Inquiry = () => {
                             <Accordion.Control
                                 icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconX className=" text-red-500" />}>
                                 <div className="flex flex-row w-1/2 xs:w-full lg:w-1/2">
-                                    <p className="flex flex-1">{`Giao dịch ${index + 1}`}</p>
-                                    <p className="flex flex-1">{numberWithCommas(item.amount)}</p>
-                                    <p className="flex flex-1">{setBadge(item.respcode)}</p>
+                                    <p className="flex flex-1 justify-start items-center">{`Giao dịch ${index + 1}`}</p>
+                                    <p className="flex flex-1 xs:hidden md:block justify-start items-center">{numberWithCommas(item.amount)}</p>
+                                    <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
                                 </div>
                             </Accordion.Control>
 
@@ -120,8 +120,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Ngân hàng phát lệnh</p>
-                                                <p className="flex flex-1">Vina Bank</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngân hàng phát lệnh</p>
+                                                <p className="flex flex-1 justify-start items-center">Vina Bank</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -129,8 +129,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Tài khoản gửi</p>
-                                                <p className="flex flex-1">{item.from_account}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tài khoản gửi</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.from_account}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -138,8 +138,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Tên người gửi</p>
-                                                <p className="flex flex-1">TRAN DUY TOAN</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tên người gửi</p>
+                                                <p className="flex flex-1 justify-start items-center">VNB</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -147,8 +147,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Ngày giao dịch</p>
-                                                <p className="flex flex-1">{item.local_time}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngày giao dịch</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.local_time}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -156,8 +156,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Trạng thái tại Napas</p>
-                                                <p className="flex flex-1">{setBadge(item.respcode)}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại Napas</p>
+                                                <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -165,8 +165,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Số tiền giao dịch</p>
-                                                <p className="flex flex-1">{numberWithCommas(item.amount)}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Số tiền giao dịch</p>
+                                                <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
                                             </div>
                                         </div>
 
@@ -175,8 +175,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Mã giao dịch</p>
-                                                <p className="flex flex-1">{item.ref_code}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Mã giao dịch</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -188,8 +188,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Ngân hàng nhận lệnh</p>
-                                                <p className="flex flex-1">Đông Á Bank</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngân hàng nhận lệnh</p>
+                                                <p className="flex flex-1 justify-start items-center">Đông Á Bank</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -197,8 +197,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Tài khoản nhận</p>
-                                                <p className="flex flex-1">{item.to_account}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tài khoản nhận</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.to_account}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -206,8 +206,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Tên người nhận</p>
-                                                <p className="flex flex-1">{item.f120}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tên người nhận</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.f120}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -215,8 +215,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Ngày quyết toán</p>
-                                                <p className="flex flex-1">{item.local_time.split(' ')[0]}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngày quyết toán</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.local_time.split(' ')[0]}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -224,8 +224,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Trạng thái tại NHNL</p>
-                                                <p className="flex flex-1">{setBadge(item.ben_respcode)}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại NHNL</p>
+                                                <p className="flex flex-1 justify-start items-center">{setBadge(item.ben_respcode)}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -233,8 +233,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Nội dung chuyển tiền</p>
-                                                <p className="flex flex-1">{item.trans_content}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Nội dung chuyển tiền</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.trans_content}</p>
                                             </div>
                                         </div>
 
@@ -243,8 +243,8 @@ const Inquiry = () => {
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400">Số trace</p>
-                                                <p className="flex flex-1">{item.trace_no}</p>
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Số trace</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.trace_no}</p>
                                             </div>
                                         </div>
 
