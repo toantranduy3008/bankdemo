@@ -1,6 +1,6 @@
 import { notifications } from '@mantine/notifications';
 import classes from './Demo.module.css';
-import { IconX, IconCircleCheck, IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react';
+import { IconCircleCheck, IconAlertTriangle, IconExclamationCircle, IconBell } from '@tabler/icons-react';
 
 class NotificationServices {
     static info(message) {
@@ -9,7 +9,7 @@ class NotificationServices {
             message: message,
             classNames: classes,
             autoClose: 5000,
-            icon: <IconInfoCircle />
+            icon: <IconBell />
         })
     }
 
@@ -42,7 +42,7 @@ class NotificationServices {
             message: message,
             classNames: classes,
             autoClose: 5000,
-            icon: <IconX />
+            icon: <IconExclamationCircle />
         })
     }
 }
