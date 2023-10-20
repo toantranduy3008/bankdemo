@@ -11,7 +11,7 @@ import Inquiry from './pages/Inquiry';
 import Home from './pages/Home';
 import BatchTransfer from './pages/BatchTransfer';
 import Transfer from './pages/Transfer';
-
+import ProtectedRoute from './components/PrivateRoutes';
 import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
         <Notifications />
         <Routes>
           <Route path='bankdemo/login' element={<Login />} />
-          <Route element={<RootLayout />}>
+          <Route element={<ProtectedRoute><RootLayout /></ProtectedRoute>}>
             <Route path='bankdemo/' element={<Home />} />
             <Route path='bankdemo/home' element={<Home />} />
             <Route path="bankdemo/qr-code" element={<QRCode />} />
