@@ -9,8 +9,8 @@ import QRCode from './pages/QRCode';
 import Login from './pages/Login';
 import Inquiry from './pages/Inquiry';
 import Home from './pages/Home';
-import BatchTransfer from './pages/BatchTransfer';
-import Transfer from './pages/Transfer';
+import BatchTransfer from './pages/batchTransfer/BatchTransfer';
+import Transfer from './pages/transfer/Transfer';
 import ProtectedRoute from './components/PrivateRoutes';
 import { Routes, Route } from 'react-router-dom';
 
