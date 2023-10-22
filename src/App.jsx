@@ -5,7 +5,7 @@ import { MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import RootLayout from './pages/RootLayout';
-import QRCode from './pages/QRCode';
+import QRCode from './pages/qrCode/QRCode';
 import Login from './pages/Login';
 import Inquiry from './pages/Inquiry';
 import Home from './pages/Home';

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
     const token = getCurrentUser();
 
     if (!token) {
-        // return <Navigate to="/bankdemo/login" replace />;
+        return <Navigate to="/bankdemo/login" replace />;
     }
 
     return children;
