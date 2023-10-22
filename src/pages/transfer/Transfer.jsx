@@ -81,7 +81,7 @@ const Transfer = () => {
         }
 
         setLoadingTransfer(true)
-        axios.post('/api/payment/fundtransfer', requestBody, { headers: authHeader() })
+        axios.post('/bankdemo/api/payment/fundtransfer', requestBody, { headers: authHeader() })
             .then(
                 res => {
                     const { f39, f63 } = res.data
