@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Divider, TextInput, Loader, Textarea, Button, NumberInput } from "@mantine/core"
-import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
+import { IconCreditCard, IconDatabase, IconCoin, IconDiscountCheck } from "@tabler/icons-react"
 import QrReader from 'react-qr-scanner'
 import { QRPay } from 'vietnam-qr-pay';
 import classes from './QRCode.module.css'
@@ -25,7 +25,7 @@ const QRCode = () => {
     const [loadingAccount, setLoadingAccount] = useState(false)
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
-    const [showQRCode, setShowQRCode] = useState(true)
+    const [showQRCode, setShowQRCode] = useState(false)
     const handleScan = (data) => {
         if (data) {
             const qrPay = new QRPay(data.text);
@@ -191,7 +191,7 @@ const QRCode = () => {
                                     input: classes.input,
                                     wrapper: classes.wrapper
                                 }}
-                                rightSection={<IconUsers size={18} />}
+                                rightSection={<IconDiscountCheck size={18} color="#0ea5e9" />}
                                 value={toAccount}
                                 className="flex flex-1 items-center justify-end"
                                 onChange={handleChangeToAccount}

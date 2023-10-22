@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, TextInput, Badge, Loader, Accordion } from "@mantine/core"
+import { Button, TextInput, Badge, Loader, Accordion, Tooltip } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import dayjs from "dayjs"
 import NotificationServices from "../services/notificationServices/NotificationServices"
@@ -154,7 +154,6 @@ const Inquiry = () => {
                                                 <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
                                             </div>
                                         </div>
-
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                             <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
@@ -162,6 +161,15 @@ const Inquiry = () => {
                                             <div className="flex flex-row flex-grow">
                                                 <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Mã giao dịch</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row justify-start items-center w-full h-full gap-2">
+                                            <div className="flex">
+                                                <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
+                                            </div>
+                                            <div className="flex flex-row flex-grow">
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Hình thức chuyển khoản</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.f60 === '99' ? 'Mã QR' : 'Thông thường'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +191,10 @@ const Inquiry = () => {
                                             </div>
                                             <div className="flex flex-row flex-grow">
                                                 <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tài khoản nhận</p>
-                                                <p className="flex flex-1 justify-start items-center">{item.to_account}</p>
+                                                <Tooltip label="Tài khoản đã xác minh" color="#0ea5e9">
+                                                    <p className="flex flex-1 justify-start items-center cursor-pointer hover:text-sky-500">{item.to_account} {item.f60 === '99' && <IconDiscountCheck className="flex fill-sky-500 text-white items-start justify-center" />}</p>
+                                                </Tooltip>
+
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
