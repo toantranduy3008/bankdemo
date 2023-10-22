@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Divider, TextInput, Loader, Textarea, Button, NumberInput } from "@mantine/core"
 import { IconCreditCard, IconDatabase, IconCoin, IconDiscountCheck } from "@tabler/icons-react"
-import { QrReader } from "react-qr-reader";
+import QrReader from 'react-qr-scanner'
 import { QRPay } from 'vietnam-qr-pay';
 import classes from './QRCode.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
@@ -116,11 +116,12 @@ const QRCode = () => {
             content: content,
             creditorAgent: '970406',
             f63: refCode,
-            toAccount: toAccount
+            toAccount: toAccount,
+            f60: 99
         }
 
         setLoadingTransfer(true)
-        axios.post('/api/payment/fundtransfer', requestBody, { headers: authHeader() })
+        axios.post('/bankdemo/api/payment/fundtransfer', requestBody, { headers: authHeader() })
             .then(
                 res => {
                     const { f39, f63 } = res.data
@@ -143,7 +144,10 @@ const QRCode = () => {
                 const { status, statusText } = err.response
                 NotificationServices.error(`${status}: ${statusText}`)
             })
-            .finally(() => { setLoadingTransfer(false) })
+            .finally(() => {
+                setLoadingTransfer(false)
+                setShowQRCode(true)
+            })
     }
     return (
 
@@ -160,7 +164,9 @@ const QRCode = () => {
                             style={previewStyle}
                             onError={handleError}
                             onScan={handleScan}
-                            constraints={{ facingMode: 'environment' }}
+                            constraints={{
+                                video: { facingMode: "environment" }
+                            }}
                         />
                     </div>
                 }
