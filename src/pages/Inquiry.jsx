@@ -32,6 +32,10 @@ const Inquiry = () => {
     }
 
     const handleSearch = () => {
+        if (!orderId) {
+            NotificationServices.warning(`Không được để trống mã giao dịch`)
+            return
+        }
         setLoading(true)
         const requestBody = {
             f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`,

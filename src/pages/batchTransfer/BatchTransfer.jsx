@@ -2,7 +2,7 @@
 {/* react packages */ }
 import { useState } from "react"
 {/* mantine packages */ }
-import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip } from "@mantine/core"
+import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip, LoadingOverlay } from "@mantine/core"
 import classes from './Demo.module.css'
 import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus } from "@tabler/icons-react"
 import axios from "axios"
@@ -140,7 +140,8 @@ const BatchTransfer = () => {
 
     return (
         <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-start items-center">
-            <div className="flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4">
+            <div className="relative flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4">
+                <LoadingOverlay visible={loadingTransfer} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                 {/* Thông tin chuyển khoản */}
                 <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
@@ -200,7 +201,7 @@ const BatchTransfer = () => {
                             variant="filled"
                             className="xs:w-full sm:w-[12rem]"
                             onClick={handleBatchTransfer}
-                            rightSection={loadingTransfer && <Loader size={18} color="white" />}
+                        // rightSection={loadingTransfer && <Loader size={18} color="white" />}
                         >
                             Xác nhận
                         </Button>
@@ -210,7 +211,7 @@ const BatchTransfer = () => {
                 <Divider size="xs" variant="dashed" orientation="vertical" className="xs:hidden lg:block" />
 
                 {/* Thông tin giao dịch con */}
-                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 bg-gradient-to-b from-[#C9D6FF] to-[#E2E2E2]  transition duration-300 hover:shadow-xl">
+                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                     <div className="flex flex-row justify-start items-center">
                         <div className="flex flex-1 flex-row text-slate-400 font-semibold justify-start items-center gap-2">
                             <p className="xs: hidden xl:block">Giao dịch:</p>

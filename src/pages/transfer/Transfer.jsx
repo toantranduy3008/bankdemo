@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Divider, TextInput, Loader, Textarea, Button, NumberInput } from "@mantine/core"
+import { Divider, TextInput, Loader, Textarea, Button, NumberInput, LoadingOverlay } from "@mantine/core"
 import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
 import classes from './Transfer.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
@@ -111,7 +111,8 @@ const Transfer = () => {
     return (
         <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-center items-center bg-[#f9f9f9]">
             <div className="flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4 justify-center items-center">
-                <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
+                <div className="relative flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
+                    <LoadingOverlay visible={loadingTransfer} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base text-slate-400">Tài khoản nguồn</p>
@@ -191,7 +192,7 @@ const Transfer = () => {
                             variant="filled"
                             className="xs:w-full sm:w-[12rem]"
                             onClick={handleTransfer}
-                            rightSection={loadingTransfer && <Loader size={18} color="white" />}
+                        // rightSection={loadingTransfer && <Loader size={18} color="white" />}
                         >
                             Xác nhận
                         </Button>
