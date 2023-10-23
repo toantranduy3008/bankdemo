@@ -138,6 +138,8 @@ const QRCode = () => {
                         receiver: receiver,
                         amount: amount
                     })
+
+                    setShowModalResult(!showModalResult)
                 }
             )
             .catch(err => {
@@ -146,7 +148,7 @@ const QRCode = () => {
             })
             .finally(() => {
                 setLoadingTransfer(false)
-                setShowQRCode(true)
+                // setShowQRCode(true)
             })
     }
     return (

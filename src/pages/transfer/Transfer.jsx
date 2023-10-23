@@ -98,6 +98,8 @@ const Transfer = () => {
                         receiver: receiver,
                         amount: amount
                     })
+
+                    setShowModalResult(!showModalResult)
                 }
             )
             .catch(err => {
