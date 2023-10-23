@@ -2,9 +2,9 @@
 {/* react packages */ }
 import { useState } from "react"
 {/* mantine packages */ }
-import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button } from "@mantine/core"
+import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip } from "@mantine/core"
 import classes from './Demo.module.css'
-import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus, IconDiscountCheck } from "@tabler/icons-react"
+import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus } from "@tabler/icons-react"
 import axios from "axios"
 import { numberWithCommas } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
@@ -226,7 +226,9 @@ const BatchTransfer = () => {
                         </div>
 
                         <div className="flex w-[1.5rem] justify-end">
-                            <IconCirclePlus size={24} className="flex fill-green-500 text-white cursor-pointer hover:fill-green-700" onClick={handleAddTransaction} />
+                            <Tooltip label="Thêm giao dịch" color="#0ea5e9">
+                                <IconCirclePlus size={24} className="flex fill-green-500 text-white cursor-pointer hover:fill-green-700" onClick={handleAddTransaction} />
+                            </Tooltip>
                         </div>
 
                     </div>
