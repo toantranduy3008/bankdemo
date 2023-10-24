@@ -23,7 +23,7 @@ export default function App() {
           <Route path='bankdemo/login' element={<Login />} />
           <Route element={<ProtectedRoute><RootLayout /></ProtectedRoute>}>
             <Route path='bankdemo/' element={<Home />} />
-            <Route path='bankdemo/home' element={<Home />} />
+            <Route path='bankdemo/home' element={<Inquiry />} />
             <Route path="bankdemo/qr-code" element={<QRCode />} />
             <Route path="bankdemo/inquiry" element={<Inquiry />} />
             <Route path="bankdemo/transfer" element={<Transfer />} />

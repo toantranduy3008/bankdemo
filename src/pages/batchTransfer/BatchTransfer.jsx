@@ -146,20 +146,20 @@ const BatchTransfer = () => {
                 <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Tài khoản nguồn</p>
+                        <p className="flex flex-1 text-base ">Tài khoản nguồn</p>
                         <p className="flex flex-1 justify-end">{userInfo?.accountNumber}</p>
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Số dư</p>
+                        <p className="flex flex-1 text-base ">Số dư</p>
                         <p className="flex flex-1 justify-end">1,200,000,000</p>
                     </div>
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Ngân hàng</p>
+                        <p className="flex flex-1 text-base ">Ngân hàng</p>
                         <p className="flex flex-1 justify-end">Đông Á Bank</p>
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400 items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>
+                        <p className="flex flex-1 text-base  items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>
                         <TextInput
                             variant="unstyled"
                             placeholder="Số tài khoản"
@@ -174,15 +174,15 @@ const BatchTransfer = () => {
                         />
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Tên người nhận</p>
+                        <p className="flex flex-1 text-base ">Tên người nhận</p>
                         <p className="flex flex-1 justify-end">{receiver}</p>
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Mã giao dịch</p>
+                        <p className="flex flex-1 text-base ">Mã giao dịch</p>
                         <p className="flex flex-1 justify-end">{refCode}</p>
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400">Nội dung chuyển tiền</p>
+                        <p className="flex flex-1 text-base ">Nội dung chuyển tiền</p>
                         <Textarea
                             placeholder="Nội dung chuyển tiền"
                             variant="unstyled"
@@ -213,7 +213,7 @@ const BatchTransfer = () => {
                 {/* Thông tin giao dịch con */}
                 <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                     <div className="flex flex-row justify-start items-center">
-                        <div className="flex flex-1 flex-row text-slate-400 font-semibold justify-start items-center gap-2">
+                        <div className="flex flex-1 flex-row  font-semibold justify-start items-center gap-2">
                             <p className="xs: hidden xl:block">Giao dịch:</p>
                             <Badge color={listTransaction.length < 10 ? 'blue' : 'green'} className="flex items-start h-full">{listTransaction.length}/10</Badge>
 
@@ -236,9 +236,9 @@ const BatchTransfer = () => {
 
                     <div className="flex flex-col flex-grow h-full ">
                         <div className="flex flex-row w-full">
-                            <p className="flex flex-row justify-start w-1/6 text-slate-400 font-semibold">#</p>
-                            <p className="flex flex-row flex-grow justify-end text-slate-400 font-semibold">Số tiền</p>
-                            <p className="flex flex-row justify-end w-1/6 text-slate-400 font-semibold text-right">##</p>
+                            <p className="flex flex-row justify-start w-1/6  font-semibold">#</p>
+                            <p className="flex flex-row flex-grow justify-end  font-semibold">Số tiền</p>
+                            <p className="flex flex-row justify-end w-1/6  font-semibold text-right">##</p>
                         </div>
                         <ScrollArea
                             offsetScrollbars
