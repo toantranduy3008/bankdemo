@@ -17,7 +17,7 @@ const RootLayout = () => {
                 <Header />
             </AppShell.Header>
             <AppShell.Navbar p="md">
-                <NavBar />
+                <NavBar toggle={toggle} />
             </AppShell.Navbar>
             <AppShell.Main className="flex">
                 <Outlet />
