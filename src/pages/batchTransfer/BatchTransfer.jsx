@@ -156,6 +156,10 @@ const BatchTransfer = () => {
                         <p className="flex flex-1 justify-end">{userInfo?.accountNumber}</p>
                     </div>
                     <div className="flex flex-row">
+                        <p className="flex flex-1 text-base ">Tên người gửi</p>
+                        <p className="flex flex-1 justify-end">{userInfo?.fullName}</p>
+                    </div>
+                    <div className="flex flex-row">
                         <p className="flex flex-1 text-base ">Số dư</p>
                         <p className="flex flex-1 justify-end">1,200,000,000</p>
                     </div>
