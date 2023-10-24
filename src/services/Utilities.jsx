@@ -1,3 +1,5 @@
+import { Badge } from "@mantine/core";
+
 export const numberWithCommas = (x) => {
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -35,4 +37,15 @@ const removeVietnameseTones = (str) => {
     // Bỏ dấu câu, kí tự đặc biệt
     str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, "");
     return str;
+}
+
+export const setBadge = (status) => {
+    return (
+        <Badge
+            size="md"
+            color={status === '00' ? 'green' : status === '68' ? 'yellow' : 'red'}
+        >
+            {status} - {status === '00' ? 'Thành công' : status === '68' ? 'Đang xử lý' : 'Thất bại'}
+        </Badge>
+    )
 }
