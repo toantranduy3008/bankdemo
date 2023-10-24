@@ -31,7 +31,7 @@ const Login = () => {
             .then(res => {
                 const userSession = JSON.stringify(res.data)
                 sessionStorage.setItem('userSession', userSession)
-                navigate('/bankdemo/home')
+                navigate('/bankdemo/transfer')
             })
             .catch(err => {
                 const { status } = err.response
