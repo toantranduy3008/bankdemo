@@ -68,6 +68,7 @@ const BatchTransfer = () => {
 
                     setReceiver(f120)
                     setRefCode(f63)
+                    contentRef.current.focus()
                 })
                 .catch(() => {
                     NotificationServices.error('Không tìm được thông tin tài khoản.')
