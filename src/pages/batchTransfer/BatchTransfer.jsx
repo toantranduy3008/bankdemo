@@ -72,6 +72,7 @@ const BatchTransfer = () => {
                 })
                 .catch(() => {
                     NotificationServices.error('Không tìm được thông tin tài khoản.')
+                    accountRef.current.focus()
                     return;
                 })
                 .finally(() => { setLoadingAccount(false) })
