@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { Button, TextInput, Badge, Loader, Accordion, Tooltip } from "@mantine/core"
+import { Button, TextInput, Loader, Accordion, Tooltip } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import dayjs from "dayjs"
 import NotificationServices from "../services/notificationServices/NotificationServices"
 import { authHeader } from "../services/AuthServices"
 import axios from "axios"
-import { numberWithCommas } from "../services/Utilities"
+import { numberWithCommas, setBadge } from "../services/Utilities"
 import { IconNorthStar, IconDiscountCheck, IconLoader, IconX } from "@tabler/icons-react"
 
 const Inquiry = () => {
@@ -18,17 +18,6 @@ const Inquiry = () => {
     }
     const handleChangeOrderId = (e) => {
         setOrderId(e.target.value)
-    }
-
-    const setBadge = (status) => {
-        return (
-            <Badge
-                size="md"
-                color={status === '00' ? 'green' : status === '68' ? 'yellow' : 'red'}
-            >
-                {status === '00' ? 'Thành công' : status === '68' ? 'Đang xử lý' : 'Thất bại'}
-            </Badge>
-        )
     }
 
     const handleSearch = () => {
@@ -146,7 +135,7 @@ const Inquiry = () => {
                                             </div>
                                             <div className="flex flex-row flex-grow">
                                                 <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại Napas</p>
-                                                <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.respcode ? setBadge(item.respcode) : 'Không phản hồi'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -225,7 +214,7 @@ const Inquiry = () => {
                                             </div>
                                             <div className="flex flex-row flex-grow">
                                                 <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại NHNL</p>
-                                                <p className="flex flex-1 justify-start items-center">{setBadge(item.ben_respcode)}</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.ben_respcode ? setBadge(item.ben_respcode) : 'Không phản hồi'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
