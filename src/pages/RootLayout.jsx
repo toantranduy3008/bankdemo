@@ -12,7 +12,7 @@ const RootLayout = () => {
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
             padding="md"
         >
-            <AppShell.Header className="flex flex-row  bg-gradient-to-r from-[#083B79] to-[#0B4C9A]">
+            <AppShell.Header className="flex flex-row  bg-gradient-to-r from-[#2980B9] to-[#6DD5FA] ">
                 <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" className=" h-full justify-center items-center text-white" />
                 <Header />
             </AppShell.Header>
