@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { Button, TextInput, Loader, Accordion, Tooltip } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import classes from './Inquiry.module.css'
 import dayjs from "dayjs"
-import NotificationServices from "../services/notificationServices/NotificationServices"
-import { authHeader } from "../services/AuthServices"
+import NotificationServices from "../../services/notificationServices/NotificationServices"
+import { authHeader } from "../../services/AuthServices"
 import axios from "axios"
-import { numberWithCommas, setBadge } from "../services/Utilities"
+import { numberWithCommas, setBadge } from "../../services/Utilities"
 import { IconNorthStar, IconDiscountCheck, IconLoader, IconX } from "@tabler/icons-react"
 
 const Inquiry = () => {
@@ -51,17 +52,32 @@ const Inquiry = () => {
     return (
         <div className="flex flex-col w-full h-full gap-10 xs:gap-5 md:gap-10">
             <div className="flex flex-col w-full h-full bg-gradient-to-r from-[#7474BF] to-[#348AC7] justify-start items-center shadow-sm">
-                <div className="flex flex-row w-full h-14 justify-center items-center gap-2">
-                    <div className="flex h-full">
+                <div className="flex flex-row xs:flex-col lg:flex-row w-full h-14 xs:h-28 lg:h-14 justify-center items-center gap-2 p-2">
+                    <div className="flex h-full xs:w-full lg:w-fit gap-2">
                         <TextInput
                             placeholder="Mã giao dịch"
                             size="md"
-                            className="flex justify-start items-center"
+                            className="flex flex-1 justify-start items-center"
                             value={orderId}
                             onChange={handleChangeOrderId}
+                            classNames={{
+                                input: classes.input,
+                                wrapper: classes.wrapper
+                            }}
+                        />
+                        <DatePickerInput
+                            valueFormat="DD/MM/YYYY"
+                            value={date}
+                            onChange={handleChangeDate}
+                            size="md"
+                            className="flex flex-1 justify-start items-center"
+                            classNames={{
+                                input: classes.input,
+                                wrapper: classes.wrapper
+                            }}
                         />
                     </div>
-                    <div className="flex h-full">
+                    {/* <div className="flex h-full">
                         <DatePickerInput
                             valueFormat="DD/MM/YYYY"
                             value={date}
@@ -69,9 +85,9 @@ const Inquiry = () => {
                             size="md"
                             className="flex justify-start items-center"
                         />
-                    </div>
-                    <div className="flex h-full items-center">
-                        <Button variant='filled' className='flex justify-start items-center' size="md" color="orange" rightSection={loading && <Loader size={20} color="white" />} onClick={handleSearch} >Tìm kiếm</Button>
+                    </div> */}
+                    <div className="flex h-full xs:w-full lg:w-fit items-center">
+                        <Button variant='filled' className='flex justify-center items-center xs:w-full' size="md" color="orange" rightSection={loading && <Loader size={20} color="white" />} onClick={handleSearch} >Tìm kiếm</Button>
                     </div>
                 </div>
             </div>

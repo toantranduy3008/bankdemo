@@ -7,7 +7,7 @@ import { Notifications } from '@mantine/notifications';
 import RootLayout from './pages/RootLayout';
 import QRCode from './pages/qrCode/QRCode';
 import Login from './pages/Login';
-import Inquiry from './pages/Inquiry';
+import Inquiry from './pages/inquiry/Inquiry';
 import Home from './pages/Home';
 import BatchTransfer from './pages/batchTransfer/BatchTransfer';
 import Transfer from './pages/transfer/Transfer';
