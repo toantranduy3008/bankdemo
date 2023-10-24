@@ -5,7 +5,7 @@ import QrReader from 'react-qr-scanner'
 import { QRPay } from 'vietnam-qr-pay';
 import classes from './QRCode.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
-import { formatVietnamese } from "../../services/Utilities"
+import { formatVietnamese, validateInValidAmount } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import axios from "axios"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
@@ -111,6 +111,12 @@ const QRCode = () => {
             return
         }
 
+        const invalidAmount = validateInValidAmount(amount)
+        if (invalidAmount) {
+            NotificationServices.warning('Số tiền phải lớn hơn 2,000 và nhỏ hơn 500,000,000.')
+            return
+        }
+
         const requestBody = {
             amount: amount,
             content: content,
@@ -143,8 +149,8 @@ const QRCode = () => {
                 }
             )
             .catch(err => {
-                const { status, statusText } = err.response
-                NotificationServices.error(`${status}: ${statusText}`)
+                const { status } = err.response
+                NotificationServices.error(`${status}: Không thể thực hiện giao dịch.`)
             })
             .finally(() => {
                 setLoadingTransfer(false)

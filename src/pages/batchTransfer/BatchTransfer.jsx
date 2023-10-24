@@ -10,7 +10,7 @@ import { numberWithCommas } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import { getCurrentUser, authHeader } from "../../services/AuthServices"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
-import { formatVietnamese } from "../../services/Utilities"
+import { formatVietnamese, validateInValidAmount } from "../../services/Utilities"
 
 const BatchTransfer = () => {
     const userInfo = getCurrentUser()
@@ -100,6 +100,12 @@ const BatchTransfer = () => {
             return
         }
 
+        const invalidAmount = listTransaction.some(x => validateInValidAmount(x))
+        if (invalidAmount) {
+            NotificationServices.warning('Số tiền phải lớn hơn 2,000 và nhỏ hơn 500,000,000.')
+            return
+        }
+
         const requestBody = {
             creditorAgent: '970406',
             toAccount: toAccount.trim(),
@@ -132,8 +138,8 @@ const BatchTransfer = () => {
 
             })
             .catch(err => {
-                const { status, statusText } = err.response
-                NotificationServices.error(`${status}: ${statusText}`)
+                const { status } = err.response
+                NotificationServices.error(`${status}: Không thể thực hiện giao dịch.`)
             })
             .finally(() => { setLoadingTransfer(false) })
     }

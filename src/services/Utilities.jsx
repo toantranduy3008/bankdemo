@@ -49,3 +49,8 @@ export const setBadge = (status) => {
         </Badge>
     )
 }
+
+export const validateInValidAmount = amount => {
+    // số tiền phải lớn hơn 2000 & nhỏ hơn 500M
+    return (amount < 2000 || amount > 500000000)
+}

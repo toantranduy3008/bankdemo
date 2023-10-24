@@ -3,7 +3,7 @@ import { Divider, TextInput, Loader, Textarea, Button, NumberInput, LoadingOverl
 import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
 import classes from './Transfer.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
-import { formatVietnamese } from "../../services/Utilities"
+import { formatVietnamese, validateInValidAmount } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import axios from "axios"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
@@ -72,6 +72,12 @@ const Transfer = () => {
             return
         }
 
+        const invalidAmount = validateInValidAmount(amount)
+        if (invalidAmount) {
+            NotificationServices.warning('Số tiền phải lớn hơn 2,000 và nhỏ hơn 500,000,000.')
+            return
+        }
+
         const requestBody = {
             amount: amount,
             content: content,
@@ -103,8 +109,8 @@ const Transfer = () => {
                 }
             )
             .catch(err => {
-                const { status, statusText } = err.response
-                NotificationServices.error(`${status}: ${statusText}`)
+                const { status } = err.response
+                NotificationServices.error(`${status}: Không thể thực hiện giao dịch.`)
             })
             .finally(() => { setLoadingTransfer(false) })
     }
@@ -160,6 +166,7 @@ const Transfer = () => {
                                 input: classes.input,
                                 wrapper: classes.wrapper
                             }}
+                            allowNegative={false}
                             thousandSeparator=","
                             value={amount}
                             onChange={handleChangeAmount}
