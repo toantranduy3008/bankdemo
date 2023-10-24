@@ -111,13 +111,22 @@ const Inquiry = () => {
                                                 <p className="flex flex-1 justify-start items-center">{item.from_account}</p>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row justify-start items-center w-full h-full gap-2">
+                                        {/* <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                             <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
                                             </div>
                                             <div className="flex flex-row flex-grow">
                                                 <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tên người gửi</p>
                                                 <p className="flex flex-1 justify-start items-center">VNB</p>
+                                            </div>
+                                        </div> */}
+                                        <div className="flex flex-row justify-start items-center w-full h-full gap-2">
+                                            <div className="flex">
+                                                <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
+                                            </div>
+                                            <div className="flex flex-row flex-grow">
+                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Hình thức chuyển khoản</p>
+                                                <p className="flex flex-1 justify-start items-center">{item.f60 === '99' ? 'Mã QR' : 'Thông thường'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -156,15 +165,7 @@ const Inquiry = () => {
                                                 <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
-                                                <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
-                                            <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Hình thức chuyển khoản</p>
-                                                <p className="flex flex-1 justify-start items-center">{item.f60 === '99' ? 'Mã QR' : 'Thông thường'}</p>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                     {/* cột phải */}
