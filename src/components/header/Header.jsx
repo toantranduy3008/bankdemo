@@ -21,7 +21,7 @@ const Header = () => {
                 <img src={'./napas-white.png'} className=" w-auto xs:w-24 h-12 xs:h-auto align-middle border-none " />
             </div>
             <div className="flex flex-1 justify-center items-center">
-                <p className="text-white text-lg text-center xs:hidden md:block md:text-lg">Công ty Cổ phần Thanh toán Quốc gia Việt Nam - NAPAS</p>
+                <p className="text-white text-lg text-center xs:hidden md:block md:text-lg">Ngân hàng Vinabank - Napas</p>
             </div>
             <div className="flex flex-1 h-full justify-end items-center">
                 <Menu shadow="md" width={200} position="bottom-end">
