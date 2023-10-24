@@ -1,6 +1,6 @@
 
 {/* react packages */ }
-import { useState } from "react"
+import { useRef, useState, useEffect } from "react"
 {/* mantine packages */ }
 import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip, LoadingOverlay } from "@mantine/core"
 import classes from './Demo.module.css'
@@ -14,6 +14,8 @@ import { formatVietnamese, validateInValidAmount } from "../../services/Utilitie
 
 const BatchTransfer = () => {
     const userInfo = getCurrentUser()
+    const accountRef = useRef(null)
+    const contentRef = useRef(null)
     const [listTransaction, setListTransaction] = useState([])
     const [totalAmount, setTotalAmount] = useState(0)
     const [toAccount, setToAccount] = useState('')
@@ -24,6 +26,11 @@ const BatchTransfer = () => {
     const [modalData, setModalData] = useState({})
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
+
+    useEffect(() => {
+        accountRef.current.focus();
+    }, [])
+
     const handleAddTransaction = () => {
         if (listTransaction.length < 10) {
             setListTransaction(current => [...current, 0])
@@ -86,19 +93,36 @@ const BatchTransfer = () => {
         }
     }
 
-    const inValidData = () => {
-        if (!toAccount || !receiver || !refCode || !content || listTransaction.length === 0 || listTransaction.includes('') || listTransaction.includes(undefined) || listTransaction.includes(0)) {
-            return true
+    const validData = () => {
+        if (!toAccount) {
+            NotificationServices.warning('Tài khoản nhận không được để trống.')
+            accountRef.current.focus();
+            return false
         }
 
-        return false
+        if (!receiver || !refCode) {
+            NotificationServices.warning('Tài khoản không hợp lệ.')
+            accountRef.current.focus();
+            return false
+        }
+
+        if (!content || content.trim().length === 0) {
+            NotificationServices.warning('Nội dung chuyển khoản không được để trống.')
+            contentRef.current.focus();
+            return false
+        }
+
+        if (listTransaction.length === 0 || listTransaction.includes('') || listTransaction.includes(undefined) || listTransaction.includes(0)) {
+            NotificationServices.warning('Số tiền không hợp lệ.')
+            return false
+        }
+
+        return true
     }
 
     const handleBatchTransfer = () => {
-        if (inValidData()) {
-            NotificationServices.warning('Bạn cần nhập đầy đủ thông tin.')
-            return
-        }
+        const isValid = validData()
+        if (!isValid) return
 
         const invalidAmount = listTransaction.some(x => validateInValidAmount(x))
         if (invalidAmount) {
@@ -181,6 +205,7 @@ const BatchTransfer = () => {
                             className="flex items-center"
                             onChange={handleChangeToAccount}
                             onBlur={handleSearchAccount}
+                            ref={accountRef}
                         />
                     </div>
                     <div className="flex flex-row">
@@ -204,6 +229,7 @@ const BatchTransfer = () => {
                             }}
                             value={content}
                             onChange={handleChangeContent}
+                            ref={contentRef}
                         />
                     </div>
                     <div className="flex flex-row gap-2">

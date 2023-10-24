@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Divider, TextInput, Loader, Textarea, Button, NumberInput, LoadingOverlay } from "@mantine/core"
 import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
 import classes from './Transfer.module.css'
@@ -10,6 +10,9 @@ import { TransactionResultModal } from "../../components/modals/TransactionModal
 
 const Transfer = () => {
     const userInfo = getCurrentUser()
+    const accountRef = useRef(null)
+    const amountRef = useRef(null)
+    const contentRef = useRef(null)
     const [toAccount, setToAccount] = useState('')
     const [receiver, setReceiver] = useState('')
     const [refCode, setRefCode] = useState('')
@@ -19,6 +22,10 @@ const Transfer = () => {
     const [loadingAccount, setLoadingAccount] = useState(false)
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
+
+    useEffect(() => {
+        accountRef.current.focus();
+    }, [])
 
     const handleChangeToAccount = (e) => {
         setToAccount(e.target.value.trim())
@@ -58,25 +65,43 @@ const Transfer = () => {
         setAmount(data)
     }
 
-    const inValidData = () => {
-        if (!toAccount || !receiver || !refCode || !content || !amount || amount === 0) {
-            return true
+    const validData = () => {
+        if (!toAccount) {
+            NotificationServices.warning('Tài khoản nhận không được để trống.')
+            accountRef.current.focus();
+            return false
         }
 
-        return false
-    }
+        if (!receiver || !refCode) {
+            NotificationServices.warning('Tài khoản không hợp lệ.')
+            accountRef.current.focus();
+            return false
+        }
 
-    const handleTransfer = () => {
-        if (inValidData()) {
-            NotificationServices.warning('Bạn cần nhập đầy đủ thông tin.')
-            return
+        if (!amount || amount === 0) {
+            NotificationServices.warning('Số tiền không được để trống.')
+            amountRef.current.focus()
+            return false
+        }
+
+        if (!content || content.trim().length === 0) {
+            NotificationServices.warning('Nội dung chuyển khoản không được để trống.')
+            contentRef.current.focus();
+            return false
         }
 
         const invalidAmount = validateInValidAmount(amount)
         if (invalidAmount) {
             NotificationServices.warning('Số tiền phải lớn hơn 2,000 và nhỏ hơn 500,000,000.')
-            return
+            return false
         }
+
+        return true
+    }
+
+    const handleTransfer = () => {
+        const isValid = validData()
+        if (!isValid) return
 
         const requestBody = {
             amount: amount,
@@ -151,6 +176,7 @@ const Transfer = () => {
                             className="flex flex-1 items-center justify-end"
                             onChange={handleChangeToAccount}
                             onBlur={handleSearchAccount}
+                            ref={accountRef}
                         />
                     </div>
                     <div className="flex flex-row">
@@ -177,6 +203,7 @@ const Transfer = () => {
                             rightSectionPointerEvents="none"
                             rightSection={<IconCoin size={18} />}
                             className="flex flex-1 items-center justify-end"
+                            ref={amountRef}
                         />
                     </div>
                     <div className="flex flex-row">
@@ -192,6 +219,7 @@ const Transfer = () => {
                             }}
                             value={content}
                             onChange={handleChangeContent}
+                            ref={contentRef}
                         />
                     </div>
                     <div className="flex flex-row gap-2">
