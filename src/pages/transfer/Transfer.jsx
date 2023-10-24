@@ -169,10 +169,6 @@ const Transfer = () => {
                         />
                     </div>
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base text-slate-400 items-center">Mã giao dịch</p>
-                        <p className="flex flex-1 justify-end items-center">{refCode}</p>
-                    </div>
-                    <div className="flex flex-row">
                         <p className="flex flex-1 text-base text-slate-400">Nội dung chuyển tiền</p>
                         <Textarea
                             placeholder="Nội dung chuyển tiền"
