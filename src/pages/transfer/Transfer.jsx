@@ -49,7 +49,7 @@ const Transfer = () => {
                     amountRef.current.focus()
                 })
                 .catch(() => {
-                    accountRef.current.focus()
+                    // accountRef.current.focus()
                     NotificationServices.error('Không tìm được thông tin tài khoản.')
                     return;
                 })

@@ -71,7 +71,7 @@ const BatchTransfer = () => {
                     contentRef.current.focus()
                 })
                 .catch(() => {
-                    accountRef.current.focus()
+                    // accountRef.current.focus()
                     NotificationServices.error('Không tìm được thông tin tài khoản.')
                     return;
                 })
@@ -239,7 +239,7 @@ const BatchTransfer = () => {
                             variant="filled"
                             className="xs:w-full sm:w-[12rem]"
                             onClick={handleBatchTransfer}
-                        // rightSection={loadingTransfer && <Loader size={18} color="white" />}
+                            rightSection={loadingTransfer && <Loader size={18} color="white" />}
                         >
                             Xác nhận
                         </Button>
