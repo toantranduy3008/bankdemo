@@ -191,7 +191,7 @@ const QRCode = () => {
                         </div>
                         <div className="flex flex-row">
                             <p className="flex flex-1 text-base ">Tên người gửi</p>
-                            <p className="flex flex-1 justify-end">{userInfo?.fullName}</p>
+                            <p className="flex flex-1 justify-end text-end">{userInfo?.fullName}</p>
                         </div>
                         <div className="flex flex-row">
                             <p className="flex flex-1 text-base ">Số dư</p>
