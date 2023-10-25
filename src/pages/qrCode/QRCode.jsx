@@ -146,6 +146,7 @@ const QRCode = () => {
                     })
 
                     setShowModalResult(!showModalResult)
+                    setShowQRCode(true)
                 }
             )
             .catch(err => {
@@ -221,7 +222,7 @@ const QRCode = () => {
                         </div>
                         <div className="flex flex-row">
                             <p className="flex flex-1 text-base  items-center">Tên người nhận</p>
-                            <p className="flex flex-1 justify-end">{receiver}</p>
+                            <p className="flex flex-1 justify-end text-end">{receiver}</p>
                         </div>
                         <div className="flex flex-row">
                             <p className="flex flex-1 text-base  items-center">Mã giao dịch</p>

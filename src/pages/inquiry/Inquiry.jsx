@@ -7,7 +7,7 @@ import NotificationServices from "../../services/notificationServices/Notificati
 import { authHeader } from "../../services/AuthServices"
 import axios from "axios"
 import { numberWithCommas, setBadge } from "../../services/Utilities"
-import { IconNorthStar, IconDiscountCheck, IconLoader, IconX } from "@tabler/icons-react"
+import { IconNorthStar, IconDiscountCheck, IconLoader, IconExclamationCircle } from "@tabler/icons-react"
 
 const Inquiry = () => {
     const [date, setDate] = useState(new Date());
@@ -97,7 +97,7 @@ const Inquiry = () => {
                     {data.map((item, index) => (
                         <Accordion.Item value={item.trace_no} className="flex flex-col w-full" key={item.trace_no}>
                             <Accordion.Control
-                                icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconX className=" text-red-500" />}>
+                                icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}>
                                 <div className="flex flex-row w-1/2 xs:w-full lg:w-1/2">
                                     <p className="flex flex-1 justify-start items-center">{`Giao dịch ${data.length > 1 ? index + 1 : ''}`}</p>
                                     <p className="flex flex-1 xs:hidden md:block justify-start items-center">{numberWithCommas(item.amount)}</p>

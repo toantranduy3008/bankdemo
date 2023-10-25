@@ -212,7 +212,7 @@ const BatchTransfer = () => {
                     </div>
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base ">Tên người nhận</p>
-                        <p className="flex flex-1 justify-end">{receiver}</p>
+                        <p className="flex flex-1 justify-end text-end">{receiver}</p>
                     </div>
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base ">Mã giao dịch</p>
