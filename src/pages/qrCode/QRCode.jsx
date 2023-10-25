@@ -146,7 +146,7 @@ const QRCode = () => {
                     })
 
                     setShowModalResult(!showModalResult)
-                    setShowQRCode(true)
+                    // setShowQRCode(true)
                 }
             )
             .catch(err => {
