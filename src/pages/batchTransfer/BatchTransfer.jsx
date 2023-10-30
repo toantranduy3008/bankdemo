@@ -225,10 +225,6 @@ const BatchTransfer = () => {
                         <p className="flex flex-1 text-base ">Tên người gửi</p>
                         <p className="flex flex-1 justify-end text-end">{userInfo?.fullName}</p>
                     </div>
-                    <div className="flex flex-row">
-                        <p className="flex flex-1 text-base ">Số dư</p>
-                        <p className="flex flex-1 justify-end">1,200,000,000</p>
-                    </div>
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base ">Ngân hàng</p>
