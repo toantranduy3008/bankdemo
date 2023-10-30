@@ -19,7 +19,7 @@ const RootLayout = () => {
             <AppShell.Navbar p="md">
                 <NavBar toggle={toggle} />
             </AppShell.Navbar>
-            <AppShell.Main className="flex bg-gradient-to-r from-[#083B79] to-[#0B4C9A]">
+            <AppShell.Main className="flex bg-[url('/napas-bg.jpg')]">
                 <Outlet />
             </AppShell.Main>
         </AppShell>

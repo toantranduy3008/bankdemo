@@ -40,7 +40,7 @@ const Login = () => {
             .finally(() => setLoading(false))
     }
     return (
-        <div className="flex flex-col w-full h-screen bg-slate-300 bg-[url('/napas-background.jpg')] bg-center bg-cover bg-no-repeat justify-center items-center">
+        <div className="flex flex-col w-full h-screen bg-slate-300 bg-[url('/napas-bg.jpg')] bg-center bg-cover bg-no-repeat justify-center items-center">
             <div className="bg-white w-1/3 h-1/2 xs:w-full lg:w-1/3 xs:h-3/5 md:h-1/2 flex flex-col justify-start items-center shadow-sm bg-opacity-95 p-4">
                 <p className="flex flex-row font-semibold">Chào mừng tới với ngân hàng Vinabank - Napas</p>
                 <Fieldset legend="Thông tin đăng nhập" className="flex flex-col w-full h-full justify-center gap-5">

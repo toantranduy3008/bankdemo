@@ -103,7 +103,7 @@ const Inquiry = () => {
                             </Accordion.Control>
 
                             <Accordion.Panel>
-                                <div className="flex flex-row xs:flex-col lg:flex-row justify-center items-start w-full">
+                                <div className="flex flex-row xs:flex-col lg:flex-row justify-center items-start w-full gap-2">
                                     {/* cột trái */}
                                     <div className="flex flex-col lg:flex-1 xs:w-full">
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
