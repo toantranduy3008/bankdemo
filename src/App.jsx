@@ -8,7 +8,7 @@ import RootLayout from './pages/RootLayout';
 import QRCode from './pages/qrCode/QRCode';
 import Login from './pages/Login';
 import Inquiry from './pages/inquiry/Inquiry';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import BatchTransfer from './pages/batchTransfer/BatchTransfer';
 import Transfer from './pages/transfer/Transfer';
 import ProtectedRoute from './components/PrivateRoutes';
@@ -23,7 +23,7 @@ export default function App() {
           <Route path='bankdemo/login' element={<Login />} />
           <Route element={<ProtectedRoute><RootLayout /></ProtectedRoute>}>
             <Route path='bankdemo/' element={<Home />} />
-            <Route path='bankdemo/home' element={<Inquiry />} />
+            <Route path='bankdemo/home' element={<Home />} />
             <Route path="bankdemo/qr-code" element={<QRCode />} />
             <Route path="bankdemo/inquiry" element={<Inquiry />} />
             <Route path="bankdemo/transfer" element={<Transfer />} />
