@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react"
 {/* mantine packages */ }
 import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip, LoadingOverlay, Switch, Modal } from "@mantine/core"
 import classes from './Demo.module.css'
-import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus } from "@tabler/icons-react"
+import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus, IconInfoCircle } from "@tabler/icons-react"
 import axios from "axios"
 import { numberWithCommas } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
@@ -51,6 +51,11 @@ const BatchTransfer = () => {
     }
 
     const handleDetachAmount = () => {
+        if (totalAmountDetach < 2000) {
+            NotificationServices.warning('Số tiền phải lớn hơn 2,000')
+            return
+        }
+
         let a = totalAmountDetach
         let b = totalAmountDetach
         const list = [450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
@@ -73,7 +78,6 @@ const BatchTransfer = () => {
         setListTransaction(output)
         setTotalAmount(totalAmountDetach)
         setShowDetachModal(false)
-        // setTotalAmountDetach(0)
     }
 
     const handleChangeAmount = (data, index) => {
@@ -294,14 +298,21 @@ const BatchTransfer = () => {
                         </div>
                         <p className="flex flex-1 justify-end text-gray-400 font-semibold">{numberWithCommas(totalAmount)}</p>
                     </div>
-                    <div className="flex flex-row justify-start items-center">
+                    <div className="flex flex-row justify-start items-center gap-1 xs:gap-0 md:gap-1">
                         <Switch
-                            size="md"
+                            size="sm"
                             onLabel="ON"
                             offLabel="OFF"
                             label="Tự động chia số tiền"
                             checked={autoDetach} onChange={(event) => setAutoDetach(event.currentTarget.checked)}
+                            classNames={{
+                                track: classes.track
+                            }}
                         />
+                        <Tooltip label="Số tiền sẽ được tự động chia thành các mức nhỏ hơn để phù hợp với quy định của Napas." color="#0ea5e9">
+                            <IconInfoCircle size={18} className="text-white flex fill-sky-500 cursor-pointer" />
+                        </Tooltip>
+
                     </div>
 
                     <div className="flex flex-row items-center justify-between gap-2">
@@ -361,7 +372,7 @@ const BatchTransfer = () => {
 
             <TransactionResultModal data={modalData} opened={showModalResult} onClose={setShowModalResult} />
             <Modal opened={showDetachModal} onClose={setShowDetachModal} title="Thông tin">
-                <div className="flex flex-col w-full items-center justify-start">
+                <div className="flex flex-col w-full items-center justify-start gap-2">
                     <NumberInput
                         // variant="unstyled"
                         label="Số tiền"
@@ -378,7 +389,7 @@ const BatchTransfer = () => {
                         thousandSeparator=","
                         hideControls
                     />
-                    <p className="flex justify-start items-center w-full text-sm">* Số tiền sẽ được tự động tách thành các phần nhỏ hơn</p>
+                    {/* <p className="flex justify-start items-center w-full text-sm">* Số tiền sẽ được tự động tách thành các phần nhỏ hơn</p> */}
                     <Button
                         variant="filled"
                         className="flex w-full justify-center items-center"

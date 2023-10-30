@@ -13,3 +13,7 @@
     align-items: center;
     display: flex;
 }
+
+.track {
+    cursor: pointer;
+}
