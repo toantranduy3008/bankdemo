@@ -212,10 +212,10 @@ const BatchTransfer = () => {
 
     return (
         <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-start items-center">
-            <div className="relative flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4">
+            <div className="relative flex flex-row xs:flex-col lg:flex-row w-full h-full gap-4 xs:gap-4 lg:gap-4">
                 <LoadingOverlay visible={loadingTransfer} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                 {/* Thông tin chuyển khoản */}
-                <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
+                <div className="flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl bg-white">
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base ">Tài khoản nguồn</p>
@@ -289,7 +289,7 @@ const BatchTransfer = () => {
                 <Divider size="xs" variant="dashed" orientation="vertical" className="xs:hidden lg:block" />
 
                 {/* Thông tin giao dịch con */}
-                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
+                <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl bg-white">
                     <div className="flex flex-row justify-start items-center">
                         <div className="flex flex-1 flex-row  font-semibold justify-start items-center gap-2">
                             <p className="xs: hidden xl:block">Giao dịch:</p>
@@ -338,7 +338,7 @@ const BatchTransfer = () => {
                         <ScrollArea
                             offsetScrollbars
                             scrollbarSize={8}
-                            className="h-[26rem] xs:h-[16rem] lg:h-[26rem]"
+                            className="h-[25rem] xs:h-[16rem] lg:h-[25rem]"
                             scrollHideDelay={0}
                         >
                             {
