@@ -7,7 +7,7 @@ import NotificationServices from "../../services/notificationServices/Notificati
 import { authHeader } from "../../services/AuthServices"
 import axios from "axios"
 import { numberWithCommas, setBadge } from "../../services/Utilities"
-import { IconNorthStar, IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
+import { IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
 
 const Inquiry = () => {
     const [date, setDate] = useState(new Date());

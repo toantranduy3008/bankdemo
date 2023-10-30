@@ -6,3 +6,10 @@
     text-align: right;
     font-size: medium;
 }
+
+.numberLabel {
+    width: 30%;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+}

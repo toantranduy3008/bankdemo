@@ -2,7 +2,7 @@
 {/* react packages */ }
 import { useRef, useState, useEffect } from "react"
 {/* mantine packages */ }
-import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip, LoadingOverlay } from "@mantine/core"
+import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, Button, Tooltip, LoadingOverlay, Switch, Modal } from "@mantine/core"
 import classes from './Demo.module.css'
 import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus } from "@tabler/icons-react"
 import axios from "axios"
@@ -18,6 +18,7 @@ const BatchTransfer = () => {
     const contentRef = useRef(null)
     const [listTransaction, setListTransaction] = useState([])
     const [totalAmount, setTotalAmount] = useState(0)
+    const [totalAmountDetach, setTotalAmountDetach] = useState(0)
     const [toAccount, setToAccount] = useState('')
     const [receiver, setReceiver] = useState('')
     const [refCode, setRefCode] = useState('')
@@ -26,20 +27,55 @@ const BatchTransfer = () => {
     const [modalData, setModalData] = useState({})
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
-
+    const [autoDetach, setAutoDetach] = useState(true)
+    const [showDetachModal, setShowDetachModal] = useState(false)
     useEffect(() => {
         accountRef.current.focus();
     }, [])
 
     const handleAddTransaction = () => {
-        if (listTransaction.length < 10) {
-            setListTransaction(current => [...current, 0])
+        if (!autoDetach) {
+            // Trường hợp không bật tự động chia nhỏ số tiền
+            if (listTransaction.length < 10) {
+                setListTransaction(current => [...current, 0])
+            }
+            else {
+                NotificationServices.warning('Chỉ được tạo tối đa 10 giao dịch')
+                return;
+            }
         }
         else {
-            NotificationServices.warning('Chỉ được tạo tối đa 10 giao dịch')
-            return;
+            // Trường hợp bật tự động chia nhỏ số tiền
+            setShowDetachModal(!showDetachModal)
         }
     }
+
+    const handleDetachAmount = () => {
+        let a = totalAmountDetach
+        let b = totalAmountDetach
+        const list = [450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
+        const output = []
+        let total = 0
+        while (total < b) {
+            for (let i = 0; i < list.length; i++) {
+                if (a >= list[i] * 1000000) {
+                    output.push(list[i] * 1000000)
+                    total += list[i] * 1000000
+                    a -= list[i] * 1000000
+                } else {
+                    a > 0 && output.push(a)
+                    total += a
+                    break
+                }
+            }
+        }
+
+        setListTransaction(output)
+        setTotalAmount(totalAmountDetach)
+        setShowDetachModal(false)
+        // setTotalAmountDetach(0)
+    }
+
     const handleChangeAmount = (data, index) => {
         const newListTransaction = [listTransaction[index] = data, ...listTransaction].slice(1)
         setListTransaction(newListTransaction)
@@ -258,6 +294,16 @@ const BatchTransfer = () => {
                         </div>
                         <p className="flex flex-1 justify-end text-gray-400 font-semibold">{numberWithCommas(totalAmount)}</p>
                     </div>
+                    <div className="flex flex-row justify-start items-center">
+                        <Switch
+                            size="md"
+                            onLabel="ON"
+                            offLabel="OFF"
+                            label="Tự động chia số tiền"
+                            checked={autoDetach} onChange={(event) => setAutoDetach(event.currentTarget.checked)}
+                        />
+                    </div>
+
                     <div className="flex flex-row items-center justify-between gap-2">
                         <div className="flex flex-row flex-grow w-3/4 justify-start items-center gap-2">
                             <p className="flex text-base text-gray-400">Thông tin giao dịch </p>
@@ -314,6 +360,35 @@ const BatchTransfer = () => {
             </div>
 
             <TransactionResultModal data={modalData} opened={showModalResult} onClose={setShowModalResult} />
+            <Modal opened={showDetachModal} onClose={setShowDetachModal} title="Thông tin">
+                <div className="flex flex-col w-full items-center justify-start">
+                    <NumberInput
+                        // variant="unstyled"
+                        label="Số tiền"
+                        placeholder="Số tiền"
+                        className="flex flex-row flex-grow justify-endv text-base w-full"
+                        classNames={{
+                            wrapper: classes.wrapper,
+                            input: classes.input,
+                            label: classes.numberLabel
+                        }}
+                        value={totalAmountDetach}
+                        onChange={(data) => setTotalAmountDetach(data)}
+                        allowNegative={false}
+                        thousandSeparator=","
+                        hideControls
+                    />
+                    <p className="flex justify-start items-center w-full text-sm">* Số tiền sẽ được tự động tách thành các phần nhỏ hơn</p>
+                    <Button
+                        variant="filled"
+                        className="flex w-full justify-center items-center"
+                        onClick={handleDetachAmount}
+                    // rightSection={loadingTransfer && <Loader size={18} color="white" />}
+                    >
+                        Xác nhận
+                    </Button>
+                </div>
+            </Modal>
         </div>
     )
 }
