@@ -160,9 +160,9 @@ const QRCode = () => {
     }
     return (
 
-        <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-center items-center bg-[#f9f9f9]">
+        <div className="flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-center items-center">
             {/* <button onClick={() => setShowQRCode(!showQRCode)}>toggle</button> */}
-            <div className="flex flex-row xs:flex-col lg:flex-row w-full h-full bg-white gap-4 xs:gap-4 lg:gap-4 justify-center items-center">
+            <div className="flex flex-row xs:flex-col lg:flex-row w-full h-full gap-4 xs:gap-4 lg:gap-4 justify-center items-center">
                 {/* qr scan */}
                 {
                     showQRCode &&
@@ -183,7 +183,7 @@ const QRCode = () => {
                 {/* form thông tin */}
                 {
                     !showQRCode &&
-                    <div className="relative flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
+                    <div className="relative flex flex-col w-2/3 xs:w-full lg:w-2/3 h-full shadow-md xs:shadow-none lg:shadow-md bg-white p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                         <LoadingOverlay visible={loadingTransfer} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                         <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
                         <div className="flex flex-row">

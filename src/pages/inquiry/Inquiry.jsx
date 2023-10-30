@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, TextInput, Loader, Accordion, Tooltip } from "@mantine/core"
+import { Button, TextInput, Loader, Accordion, Tooltip, Divider } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import classes from './Inquiry.module.css'
 import dayjs from "dayjs"
@@ -7,7 +7,7 @@ import NotificationServices from "../../services/notificationServices/Notificati
 import { authHeader } from "../../services/AuthServices"
 import axios from "axios"
 import { numberWithCommas, setBadge } from "../../services/Utilities"
-import { IconNorthStar, IconDiscountCheck, IconLoader, IconExclamationCircle } from "@tabler/icons-react"
+import { IconNorthStar, IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
 
 const Inquiry = () => {
     const [date, setDate] = useState(new Date());
@@ -22,10 +22,6 @@ const Inquiry = () => {
     }
 
     const handleSearch = () => {
-        if (!orderId) {
-            NotificationServices.warning(`Không được để trống mã giao dịch`)
-            return
-        }
         setLoading(true)
         const requestBody = {
             f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`,
@@ -77,18 +73,19 @@ const Inquiry = () => {
                             }}
                         />
                     </div>
-                    {/* <div className="flex h-full">
-                        <DatePickerInput
-                            valueFormat="DD/MM/YYYY"
-                            value={date}
-                            onChange={handleChangeDate}
-                            size="md"
-                            className="flex justify-start items-center"
-                        />
-                    </div> */}
                     <div className="flex h-full xs:w-full lg:w-fit items-center">
-                        <Button variant='filled' className='flex justify-center items-center xs:w-full' size="md" color="orange" rightSection={loading && <Loader size={20} color="white" />} onClick={handleSearch} >Tìm kiếm</Button>
+                        <Button
+                            variant='filled'
+                            className='flex justify-center items-center xs:w-full' size="md" color="orange"
+                            rightSection={loading ? <Loader size={20} color="white" /> : <IconSearch size={20} color="white" />}
+                            onClick={handleSearch}
+                        >Tìm kiếm
+                        </Button>
                     </div>
+                </div>
+                <div className="flex flex-col w-full justify-center items-start gap-2 p-2">
+                    <p className="text-white text-sm m-0">* Mã giao dịch bao gồm 6 ký tự hoặc để trống.</p>
+                    <p className="text-white text-sm m-0">* Trong trường hợp mã giao dịch trống, hệ thống sẽ tìm ra 10 giao dịch gần nhất trong ngày tìm kiếm.</p>
                 </div>
             </div>
 
@@ -110,97 +107,89 @@ const Inquiry = () => {
                                     {/* cột trái */}
                                     <div className="flex flex-col lg:flex-1 xs:w-full">
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngân hàng phát lệnh</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Ngân hàng phát lệnh</p>
                                                 <p className="flex flex-1 justify-start items-center">Vina Bank</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tài khoản gửi</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Tài khoản gửi</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.from_account}</p>
                                             </div>
                                         </div>
-                                        {/* <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
-                                                <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
-                                            <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tên người gửi</p>
-                                                <p className="flex flex-1 justify-start items-center">VNB</p>
-                                            </div>
-                                        </div> */}
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Hình thức chuyển khoản</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Hình thức chuyển khoản</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.f60 === '99' ? 'Mã QR' : 'Thông thường'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngày giao dịch</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Ngày giao dịch</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.local_time}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại Napas</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Trạng thái tại Napas</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.respcode ? setBadge(item.respcode) : 'Không phản hồi'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Số tiền giao dịch</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Số tiền giao dịch</p>
                                                 <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Mã giao dịch</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Mã giao dịch</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
                                             </div>
                                         </div>
 
                                     </div>
 
+                                    <Divider size="xs" variant="dashed" orientation="vertical" className="xs:hidden lg:block" />
                                     {/* cột phải */}
                                     <div className="flex flex-col xs:flex lg:flex-1 xs:w-full">
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngân hàng nhận lệnh</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Ngân hàng nhận lệnh</p>
                                                 <p className="flex flex-1 justify-start items-center">Đông Á Bank</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tài khoản nhận</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Tài khoản nhận</p>
                                                 <Tooltip label="Tài khoản đã xác minh" color="#0ea5e9">
                                                     <p className="flex flex-1 justify-start items-center cursor-pointer hover:text-sky-500">{item.to_account} {item.f60 === '99' && <IconDiscountCheck className="flex fill-sky-500 text-white items-start justify-center" />}</p>
                                                 </Tooltip>
@@ -208,48 +197,48 @@ const Inquiry = () => {
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Tên người nhận</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Tên người nhận</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.f120}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Ngày quyết toán</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Ngày quyết toán</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.local_time.split(' ')[0]}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Trạng thái tại NHNL</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Trạng thái tại NHNL</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.ben_respcode ? setBadge(item.ben_respcode) : 'Không phản hồi'}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Nội dung chuyển tiền</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Nội dung chuyển tiền</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.trans_content}</p>
                                             </div>
                                         </div>
 
                                         <div className="flex flex-row justify-start items-center w-full h-full gap-2">
-                                            <div className="flex">
+                                            {/* <div className="flex">
                                                 <IconNorthStar className="flex text-indigo-400 w-5 h-5 justify-center items-start" />
-                                            </div>
+                                            </div> */}
                                             <div className="flex flex-row flex-grow">
-                                                <p className="flex flex-1 font-semibold text-slate-400 justify-start items-center">Số trace</p>
+                                                <p className="flex flex-1 font-semibold  justify-start items-center">Số trace</p>
                                                 <p className="flex flex-1 justify-start items-center">{item.trace_no}</p>
                                             </div>
                                         </div>

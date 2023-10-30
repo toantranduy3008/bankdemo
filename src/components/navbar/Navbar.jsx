@@ -8,12 +8,12 @@ const NavBar = ({ toggle }) => {
     const { pathname } = useLocation()
     return (
         <>
-            <NavLink label="Trang chủ" leftSection={<IconHome2 size="1rem" stroke={1.5} />} component={RouterLink} to={"bankdemo/home"} active={pathname === 'bankdemo/home'} onClick={toggle} />
-            <NavLink label="Tìm kiếm giao dịch" leftSection={<IconSearch size="1rem" stroke={1.5} />} component={RouterLink} to={"bankdemo/inquiry"} active={pathname === 'bankdemo/inquiry'} onClick={toggle} />
+            <NavLink label="Trang chủ" leftSection={<IconHome2 size="1rem" stroke={1.5} className='text-sky-500' />} component={RouterLink} to={"bankdemo/home"} active={pathname === 'bankdemo/home'} onClick={toggle} className='font-semibold' />
+            <NavLink label="Tìm kiếm giao dịch" leftSection={<IconSearch size="1rem" stroke={1.5} className='text-sky-500' />} component={RouterLink} to={"bankdemo/inquiry"} active={pathname === 'bankdemo/inquiry'} onClick={toggle} className='font-semibold' />
 
-            <NavLink label="CK qua mã QR" leftSection={<IconQrcode size="1rem" stroke={1.5} />} component={RouterLink} to={"bankdemo/qr-code"} active={pathname === 'bankdemo/qr-code'} onClick={toggle} />
-            <NavLink label="CK thông thường" leftSection={<IconCurrencyDollar size="1rem" stroke={1.5} />} component={RouterLink} to={"bankdemo/transfer"} active={pathname === 'bankdemo/transfer'} onClick={toggle} />
-            <NavLink label="CK với giao dịch lớn" leftSection={<IconCurrencyDollarSingapore size="1rem" stroke={1.5} />} component={RouterLink} to={"bankdemo/batch-transfer"} active={pathname === 'bankdemo/batch-transfer'} onClick={toggle} />
+            <NavLink label="CK qua mã QR" leftSection={<IconQrcode size="1rem" stroke={1.5} className='text-sky-500' />} component={RouterLink} to={"bankdemo/qr-code"} active={pathname === 'bankdemo/qr-code'} onClick={toggle} className='font-semibold' />
+            <NavLink label="CK thông thường" leftSection={<IconCurrencyDollar size="1rem" stroke={1.5} className='text-sky-500' />} component={RouterLink} to={"bankdemo/transfer"} active={pathname === 'bankdemo/transfer'} onClick={toggle} className='font-semibold' />
+            <NavLink label="CK với giao dịch lớn" leftSection={<IconCurrencyDollarSingapore size="1rem" stroke={1.5} className='text-sky-500' />} component={RouterLink} to={"bankdemo/batch-transfer"} active={pathname === 'bankdemo/batch-transfer'} onClick={toggle} className='font-semibold' />
             {/* <NavLink
                 label="Chuyển khoản"
                 leftSection={<IconCash size="1rem" stroke={1.5} />}
