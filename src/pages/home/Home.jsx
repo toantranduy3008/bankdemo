@@ -3,8 +3,9 @@ import dayjs from "dayjs"
 import { authHeader } from "../../services/AuthServices";
 import axios from "axios";
 import NotificationServices from "../../services/notificationServices/NotificationServices";
-import { Modal, Table } from "@mantine/core";
+import { Divider, Fieldset, Modal, Table } from "@mantine/core";
 import { numberWithCommas, setBadge } from "../../services/Utilities";
+import classes from './Home.module.css'
 const Home = () => {
     const fake = [
         {
@@ -91,7 +92,7 @@ const Home = () => {
         setModalData(item)
     }
 
-    const rows = fake.map((element, index) => (
+    const rows = data.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td>{index + 1}</Table.Td>
             <Table.Td className="flex text-sky-500 hover:text-sky-700 hover:cursor-pointer" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
@@ -112,8 +113,9 @@ const Home = () => {
                     div 2
                 </div>
             </div>
-            <div className='flex flex-row flex-grow xs:flex-col lg:flex-row w-full bg-white'>
-                <Table.ScrollContainer minWidth={500} className="w-full">
+            <div className='flex flex-col flex-grow xs:flex-col lg:flex-col w-full bg-white p-2'>
+                <Divider my="xs" variant="dashed" label="Giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
+                <Table.ScrollContainer minWidth={500} className="flex w-full">
                     <Table striped highlightOnHover >
                         <Table.Thead>
                             <Table.Tr>
@@ -129,13 +131,15 @@ const Home = () => {
                         <Table.Tbody>{rows}</Table.Tbody>
                     </Table>
                 </Table.ScrollContainer>
-
             </div>
-
             <Modal opened={showDetailModal} onClose={setShowDetailModal} title="Chi tiết GD">
                 <div className="flex flex-col w-full items-center justify-start">
+                    <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer">
+                        <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số trace</p>
+                        <p className="flex flex-1 justify-start items-center text-sm">{modalData.trace_no}</p>
+                    </div>
                     <div className="flex flex-row w-full gap-2 bg-slate-100 hover:bg-slate-200 hover:cursor-pointer">
-                        <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã tham chiếu</p>
+                        <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã giao dịch</p>
                         <p className="flex flex-1 justify-start items-center text-sm">{modalData.ref_code}</p>
                     </div>
 
