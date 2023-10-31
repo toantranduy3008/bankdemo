@@ -9,110 +9,110 @@ import classes from './Home.module.css'
 import LineChart from "../../components/charts/LineChart";
 import { PieChart } from "../../components/charts/PieChart";
 const Home = () => {
-    const fake = [
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "20000",
-            "trace_no": "160135",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:44:38",
-            "amount": "30000",
-            "trace_no": "468845",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "20000",
-            "trace_no": "160135",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:44:38",
-            "amount": "30000",
-            "trace_no": "468845",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        }
-    ]
+    // const fake = [
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:42:50",
+    //         "amount": "10000",
+    //         "trace_no": "145273",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     },
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:42:50",
+    //         "amount": "20000",
+    //         "trace_no": "160135",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     },
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:44:38",
+    //         "amount": "30000",
+    //         "trace_no": "468845",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     },
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:42:50",
+    //         "amount": "10000",
+    //         "trace_no": "145273",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     },
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:42:50",
+    //         "amount": "20000",
+    //         "trace_no": "160135",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     },
+    //     {
+    //         "ben_id": "970406",
+    //         "from_account": "111222",
+    //         "to_account": "6666688884",
+    //         "local_date": "1017",
+    //         "settlementDate": "1017",
+    //         "local_time": "17/10/2023 15:44:38",
+    //         "amount": "30000",
+    //         "trace_no": "468845",
+    //         "ref_code": "3290970412AgIIrG",
+    //         "respcode": "00",
+    //         "ben_respcode": "00",
+    //         "f60": "04",
+    //         "proc_code": "912020",
+    //         "trans_content": "huynt chuyen khoan",
+    //         "f120": "NGUYEN VAN B"
+    //     }
+    // ]
     const [data, setData] = useState([])
     const [showDetailModal, setShowDetailModal] = useState(false)
     const [modalData, setModalData] = useState({})
@@ -145,7 +145,7 @@ const Home = () => {
         setModalData(item)
     }
 
-    const rows = fake.map((element, index) => (
+    const rows = data.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td className="text-sm">{index + 1}</Table.Td>
             <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
