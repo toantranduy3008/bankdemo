@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { authHeader } from "../../services/AuthServices";
 import axios from "axios";
 import NotificationServices from "../../services/notificationServices/NotificationServices";
-import { Divider, Modal, ScrollArea, Table } from "@mantine/core";
+import { Divider, Modal, RingProgress, ScrollArea, Table } from "@mantine/core";
 import { numberWithCommas, setBadge } from "../../services/Utilities";
 import classes from './Home.module.css'
 import LineChart from "../../components/charts/LineChart";
@@ -161,12 +161,41 @@ const Home = () => {
             <div className="flex flex-col w-1/3 xs:w-full xl:w-1/3 h-full gap-2">
                 {/* left */}
                 <div className="flex flex-1 flex-col w-full justify-center items-start gap-2">
-                    <div className="flex flex-1 w-full bg-red-500 p-2">
-                        sum 1
-                    </div>
+                    <div className="flex flex-1 flex-col w-full bg-white p-2">
+                        <Divider my="xs" variant="dashed" label="Tỉ lệ giao dịch tháng 10/2023" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
+                        <div className="flex flex-1 flex-row w-full max-w-full">
+                            <div className="flex flex-col flex-1 items-center justify-center">
+                                <RingProgress
+                                    size={110}
+                                    sections={[{ value: 70, color: 'teal' }]}
+                                    label={
+                                        <p className="flex text-xl text-green-500 font-semibold justify-center items-center">70%</p>
 
-                    <div className="flex flex-1 w-full bg-red-500 p-2">
-                        sum 2
+                                    }
+                                />
+                                <p className="text-xs">Thành công</p>
+                            </div>
+                            <div className="flex flex-col flex-1 bg-white items-center justify-center">
+                                <RingProgress
+                                    size={110}
+                                    sections={[{ value: 10, color: 'orange' }]}
+                                    label={
+                                        <p className="flex text-xl text-orange-500 font-semibold justify-center items-center">10%</p>
+                                    }
+                                />
+                                <p className="text-xs">Đang xử lý</p>
+                            </div>
+                            <div className="flex flex-col flex-1 bg-white items-center justify-center">
+                                <RingProgress
+                                    size={110}
+                                    sections={[{ value: 20, color: 'red' }]}
+                                    label={
+                                        <p className="flex text-xl text-red-500 font-semibold justify-center items-center">20%</p>
+                                    }
+                                />
+                                <p className="text-xs">Không thành công</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-1 w-full bg-white p-2 justify-center items-center">
@@ -176,6 +205,10 @@ const Home = () => {
             </div>
             <div className="flex flex-col w-2/3 xs:w-full xl:w-2/3 h-full gap-2">
                 {/* cot phai */}
+                <div className="relative flex flex-1 w-full bg-white p-2 justify-center items-center">
+                    {/* line chart */}
+                    <LineChart />
+                </div>
                 <div className="flex flex-col flex-1 w-full bg-white p-2 justify-center items-center">
                     {/* table */}
                     <Divider my="xs" variant="dashed" label="Giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
@@ -202,10 +235,7 @@ const Home = () => {
                     </ScrollArea>
 
                 </div>
-                <div className="relative flex flex-1 w-full bg-white p-2 justify-center items-center">
-                    {/* line chart */}
-                    <LineChart />
-                </div>
+
             </div>
 
             <Modal opened={showDetailModal} onClose={setShowDetailModal} title="Chi tiết giao dịch">

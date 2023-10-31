@@ -28,3 +28,24 @@
 .active {
   @apply bg-blue-100 text-blue-600;
 }
+
+
+/* ::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
