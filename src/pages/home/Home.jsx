@@ -3,9 +3,11 @@ import dayjs from "dayjs"
 import { authHeader } from "../../services/AuthServices";
 import axios from "axios";
 import NotificationServices from "../../services/notificationServices/NotificationServices";
-import { Divider, Fieldset, Modal, Table } from "@mantine/core";
+import { Divider, Modal, Table } from "@mantine/core";
 import { numberWithCommas, setBadge } from "../../services/Utilities";
 import classes from './Home.module.css'
+import LineChart from "../../components/charts/LineChart";
+import { PieChart } from "../../components/charts/PieChart";
 const Home = () => {
     const fake = [
         {
@@ -92,7 +94,7 @@ const Home = () => {
         setModalData(item)
     }
 
-    const rows = data.map((element, index) => (
+    const rows = fake.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td>{index + 1}</Table.Td>
             <Table.Td className="flex text-sky-500 hover:text-sky-700 hover:cursor-pointer" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
@@ -104,34 +106,46 @@ const Home = () => {
         </Table.Tr>
     ));
     return (
-        <div className='flex flex-col w-full gap-4 xs:gap-4 lg:gap-4 justify-start items-center'>
-            <div className='flex flex-row xs:flex-col lg:flex-row w-full gap-4 h-[10rem] xs:h-[20rem] lg:h-[10rem]'>
-                <div className="flex flex-1 w-full h-full bg-cyan-500">
-                    div 1
+        <div className='flex flex-col w-full gap-2 xs:gap-2 lg:gap-2 justify-start items-center'>
+            <div className="flex flex-row flex-1 xs:flex-col xl:flex-row w-full h-full gap-2">
+                <div className="flex flex-col w-1/3 xs:w-full xl:w-1/3 h-full gap-2 p-2 bg-white">
+                    <div className="flex flex-1 bg-red-500">
+                        sum 1
+                    </div>
+
+                    <div className="flex flex-1 bg-red-500">
+                        sum 2
+                    </div>
                 </div>
-                <div className="flex flex-1 w-full h-full bg-cyan-500">
-                    div 2
+                <div className="flex flex-col flex-grow h-full bg-white p-2">
+                    <Divider my="xs" variant="dashed" label="Giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
+                    <Table.ScrollContainer minWidth={500} className="flex w-full">
+                        <Table striped highlightOnHover >
+                            <Table.Thead>
+                                <Table.Tr>
+                                    <Table.Th>#</Table.Th>
+                                    <Table.Th>Mã giao dịch</Table.Th>
+                                    <Table.Th>Trạng thái giao dịch</Table.Th>
+                                    <Table.Th>Ngân hàng chuyển</Table.Th>
+                                    <Table.Th>Ngân hàng nhận</Table.Th>
+                                    <Table.Th>Số tiền</Table.Th>
+                                    <Table.Th>Thời gian GD</Table.Th>
+                                </Table.Tr>
+                            </Table.Thead>
+                            <Table.Tbody>{rows}</Table.Tbody>
+                        </Table>
+                    </Table.ScrollContainer>
                 </div>
             </div>
-            <div className='flex flex-col flex-grow xs:flex-col lg:flex-col w-full bg-white p-2'>
-                <Divider my="xs" variant="dashed" label="Giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
-                <Table.ScrollContainer minWidth={500} className="flex w-full">
-                    <Table striped highlightOnHover >
-                        <Table.Thead>
-                            <Table.Tr>
-                                <Table.Th>#</Table.Th>
-                                <Table.Th>Mã giao dịch</Table.Th>
-                                <Table.Th>Trạng thái giao dịch</Table.Th>
-                                <Table.Th>Ngân hàng chuyển</Table.Th>
-                                <Table.Th>Ngân hàng nhận</Table.Th>
-                                <Table.Th>Số tiền</Table.Th>
-                                <Table.Th>Thời gian GD</Table.Th>
-                            </Table.Tr>
-                        </Table.Thead>
-                        <Table.Tbody>{rows}</Table.Tbody>
-                    </Table>
-                </Table.ScrollContainer>
+            <div className="flex flex-row flex-1 xs:flex-col xl:flex-row w-full max-w-full h-full gap-2">
+                <div className="relative flex flex-col w-1/3 xs:w-full xl:w-1/3 h-full gap-2 bg-white p-2  items-center justify-center">
+                    <PieChart />
+                </div>
+                <div className=" relative flex flex-col w-2/3 xs:w-full xl:w-2/3 h-full bg-white p-2 items-center justify-center">
+                    <LineChart />
+                </div>
             </div>
+
             <Modal opened={showDetailModal} onClose={setShowDetailModal} title="Chi tiết GD">
                 <div className="flex flex-col w-full items-center justify-start">
                     <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer">
@@ -194,6 +208,7 @@ const Home = () => {
                 </div>
 
             </Modal>
+
         </div>
     );
 }
