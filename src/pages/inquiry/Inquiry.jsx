@@ -192,7 +192,7 @@ const Inquiry = () => {
                 </div>
                 <div className="flex flex-col w-full justify-center items-start gap-2 p-2">
                     <p className="text-white text-sm m-0">* Mã giao dịch bao gồm 6 ký tự hoặc để trống.</p>
-                    <p className="text-white text-sm m-0">* Trường hợp không nhập mã giao dịch, hệ thống sẽ tìm ra 5 giao dịch gần nhất trong ngày tìm kiếm.</p>
+                    <p className="text-white text-sm m-0">* Trường hợp không nhập mã giao dịch, hệ thống sẽ tìm ra 10 giao dịch gần nhất trong ngày tìm kiếm.</p>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@ const Inquiry = () => {
                 <ScrollArea
                     // offsetScrollbars
                     scrollbarSize={8}
-                    className="h-[28rem] xs:h-full xl:h-[28rem] w-full"
+                    className="h-[28rem] xs:h-full xl:h-[28rem] 3xl:h-[50rem] w-full"
                     scrollHideDelay={0}
                 >
                     <Accordion variant="contained" className="flex flex-col w-full h-full">

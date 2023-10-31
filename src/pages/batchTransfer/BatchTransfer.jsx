@@ -36,13 +36,7 @@ const BatchTransfer = () => {
     const handleAddTransaction = () => {
         if (!autoDetach) {
             // Trường hợp không bật tự động chia nhỏ số tiền
-            if (listTransaction.length < 10) {
-                setListTransaction(current => [...current, 0])
-            }
-            else {
-                NotificationServices.warning('Chỉ được tạo tối đa 10 giao dịch')
-                return;
-            }
+            setListTransaction(current => [...current, 0])
         }
         else {
             // Trường hợp bật tự động chia nhỏ số tiền
@@ -193,6 +187,7 @@ const BatchTransfer = () => {
                 setContent('')
                 setListTransaction([])
                 setTotalAmount(0)
+                setTotalAmountDetach(0)
                 setModalData({
                     status: f39,
                     toAccount: toAccount,
@@ -288,9 +283,8 @@ const BatchTransfer = () => {
                 <div className="flex flex-col flex-grow h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl bg-white">
                     <div className="flex flex-row justify-start items-center">
                         <div className="flex flex-1 flex-row  font-semibold justify-start items-center gap-2">
-                            <p className="xs: hidden xl:block">Giao dịch:</p>
-                            <Badge color={listTransaction.length < 10 ? 'blue' : 'green'} className="flex items-start h-full">{listTransaction.length}/10</Badge>
-
+                            <Badge color={listTransaction.length < 10 ? 'blue' : 'green'} className="flex items-start h-full">{listTransaction.length}</Badge>
+                            <p className="xs: hidden xl:block">Giao dịch</p>
                         </div>
                         <p className="flex flex-1 justify-end text-gray-400 font-semibold">{numberWithCommas(totalAmount)}</p>
                     </div>

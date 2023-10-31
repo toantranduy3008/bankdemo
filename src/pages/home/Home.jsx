@@ -4,11 +4,13 @@ import { authHeader } from "../../services/AuthServices";
 import axios from "axios";
 import NotificationServices from "../../services/notificationServices/NotificationServices";
 import { Divider, Modal, RingProgress, ScrollArea, Table } from "@mantine/core";
-import { numberWithCommas, setBadge } from "../../services/Utilities";
+import { GetMedia, numberWithCommas, setBadge } from "../../services/Utilities";
 import classes from './Home.module.css'
 import LineChart from "../../components/charts/LineChart";
 import { PieChart } from "../../components/charts/PieChart";
 const Home = () => {
+    const media = GetMedia()
+    console.log(media, 'media')
     // const fake = [
     //     {
     //         "ben_id": "970406",
@@ -166,7 +168,9 @@ const Home = () => {
                         <div className="flex flex-1 flex-row w-full max-w-full">
                             <div className="flex flex-col flex-1 items-center justify-center">
                                 <RingProgress
-                                    size={110}
+                                    // className="flex xs:w-[6.5rem] lg:w-32 3xl:w-44 xs:h-28 lg:h-32 3xl:h-44 justify-center items-center"
+                                    // size={matchXS ? 110 : match3XL ? 200 : 150}
+                                    size={media === '3xl' ? 170 : 110}
                                     sections={[{ value: 70, color: 'teal' }]}
                                     label={
                                         <p className="flex text-xl text-green-500 font-semibold justify-center items-center">70%</p>
@@ -177,7 +181,8 @@ const Home = () => {
                             </div>
                             <div className="flex flex-col flex-1 bg-white items-center justify-center">
                                 <RingProgress
-                                    size={110}
+                                    // size={media === '3xl' ? 200 : media === 'md'}
+                                    size={media === '3xl' ? 170 : 110}
                                     sections={[{ value: 10, color: 'orange' }]}
                                     label={
                                         <p className="flex text-xl text-orange-500 font-semibold justify-center items-center">10%</p>
@@ -187,7 +192,8 @@ const Home = () => {
                             </div>
                             <div className="flex flex-col flex-1 bg-white items-center justify-center">
                                 <RingProgress
-                                    size={110}
+                                    // size={matchXS ? 110 : match3XL ? 200 : 150}
+                                    size={media === '3xl' ? 170 : 110}
                                     sections={[{ value: 20, color: 'red' }]}
                                     label={
                                         <p className="flex text-xl text-red-500 font-semibold justify-center items-center">20%</p>
@@ -209,13 +215,13 @@ const Home = () => {
                     {/* line chart */}
                     <LineChart />
                 </div>
-                <div className="flex flex-col flex-1 w-full bg-white p-2 justify-center items-center">
+                <div className="flex flex-col flex-1 w-full bg-white p-2 justify-start items-center">
                     {/* table */}
-                    <Divider my="xs" variant="dashed" label="Giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
+                    <Divider my="xs" variant="dashed" label="10 giao dịch gần nhất" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
                     <ScrollArea
                         offsetScrollbars
                         scrollbarSize={8}
-                        className="h-[18rem] xs:h-full xl:h-[18rem] w-full"
+                        className="h-[18rem] xs:h-full xl:h-[18rem] 3xl:h-[25rem] w-full"
                         scrollHideDelay={0}
                     >
                         <Table striped highlightOnHover>

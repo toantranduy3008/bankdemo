@@ -12,6 +12,7 @@ export default {
       },
       screens: {
         'xs': '300px',
+        '3xl': '2000px',
         ...defaultTheme.screens,
       },
     },

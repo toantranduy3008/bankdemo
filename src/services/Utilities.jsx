@@ -1,5 +1,5 @@
 import { Badge } from "@mantine/core";
-
+import { useMediaQuery } from "@mantine/hooks";
 export const numberWithCommas = (x) => {
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -54,4 +54,23 @@ export const setBadge = (status) => {
 export const validateInValidAmount = amount => {
     // số tiền phải lớn hơn 2000 & nhỏ hơn 500M
     return (amount <= 2000 || amount >= 500000000)
+}
+
+export const GetMedia = () => {
+    const matchXs = useMediaQuery('(min-width: 300px)')
+    const matchSm = useMediaQuery('(min-width: 640px)')
+    const matchMd = useMediaQuery('(min-width: 768px)')
+    const matchLg = useMediaQuery('(min-width: 1024px)')
+    const matchXl = useMediaQuery('(min-width: 1280px)')
+    const match2Xl = useMediaQuery('(min-width: 1536px)')
+    const match3Xl = useMediaQuery('(min-width: 2000px)')
+    //let media = match3Xl ? '3xl' ? match2Xl ? '2xl' 
+    if (match3Xl) return '3xl'
+    if (match2Xl) return '2xl'
+    if (matchXl) return 'xl'
+    if (matchLg) return 'lg'
+    if (matchMd) return 'md'
+    if (matchSm) return 'sm'
+    //if (matchXs) return 'xs'
+    return 'xs'
 }
