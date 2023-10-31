@@ -10,110 +10,178 @@ import { numberWithCommas, setBadge } from "../../services/Utilities"
 import { IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
 
 const Inquiry = () => {
-    // const fake = [
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "10000",
-    //         "trace_no": "145273",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "20000",
-    //         "trace_no": "160135",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:44:38",
-    //         "amount": "30000",
-    //         "trace_no": "468845",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "10000",
-    //         "trace_no": "145273",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "20000",
-    //         "trace_no": "160135",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:44:38",
-    //         "amount": "30000",
-    //         "trace_no": "468845",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     }
-    // ]
+    const fake = [
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "20000",
+            "trace_no": "160135",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:44:38",
+            "amount": "30000",
+            "trace_no": "468845",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "20000",
+            "trace_no": "160135",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:44:38",
+            "amount": "30000",
+            "trace_no": "468845",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "20000",
+            "trace_no": "160135",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:44:38",
+            "amount": "30000",
+            "trace_no": "468845",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        }
+    ]
     const [date, setDate] = useState(new Date());
     const [orderId, setOrderId] = useState('')
     const [data, setData] = useState([])
@@ -200,11 +268,11 @@ const Inquiry = () => {
                 <ScrollArea
                     // offsetScrollbars
                     scrollbarSize={8}
-                    className="h-[28rem] xs:h-full xl:h-[28rem] 3xl:h-[50rem] w-full"
+                    className="h-[28rem] xs:h-full xl:h-[28rem] 3xl:h-[52rem] w-full"
                     scrollHideDelay={0}
                 >
                     <Accordion variant="contained" className="flex flex-col w-full h-full">
-                        {data.map((item, index) => (
+                        {fake.map((item, index) => (
                             <Accordion.Item value={item.trace_no} className="flex flex-col w-full bg-white" key={item.trace_no}>
                                 <Accordion.Control
                                     icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}>
