@@ -15,7 +15,7 @@ const options = {
         },
     },
     skipNull: true,
-    maintainAspectRatio: true
+    maintainAspectRatio: false
 };
 export const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

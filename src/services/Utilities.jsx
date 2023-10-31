@@ -44,6 +44,7 @@ export const setBadge = (status) => {
         <Badge
             size="md"
             color={status === '00' ? 'green' : status === '68' ? 'yellow' : 'red'}
+            className="text-[0.5rem]"
         >
             {status} - {status === '00' ? 'Thành công' : status === '68' ? 'Đang xử lý' : 'Thất bại'}
         </Badge>
