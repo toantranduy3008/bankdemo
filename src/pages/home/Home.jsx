@@ -11,110 +11,110 @@ import { PieChart } from "../../components/charts/PieChart";
 const Home = () => {
     const media = GetMedia()
     console.log(media, 'media')
-    // const fake = [
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "10000",
-    //         "trace_no": "145273",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "20000",
-    //         "trace_no": "160135",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:44:38",
-    //         "amount": "30000",
-    //         "trace_no": "468845",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "10000",
-    //         "trace_no": "145273",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:42:50",
-    //         "amount": "20000",
-    //         "trace_no": "160135",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     },
-    //     {
-    //         "ben_id": "970406",
-    //         "from_account": "111222",
-    //         "to_account": "6666688884",
-    //         "local_date": "1017",
-    //         "settlementDate": "1017",
-    //         "local_time": "17/10/2023 15:44:38",
-    //         "amount": "30000",
-    //         "trace_no": "468845",
-    //         "ref_code": "3290970412AgIIrG",
-    //         "respcode": "00",
-    //         "ben_respcode": "00",
-    //         "f60": "04",
-    //         "proc_code": "912020",
-    //         "trans_content": "huynt chuyen khoan",
-    //         "f120": "NGUYEN VAN B"
-    //     }
-    // ]
+    const fake = [
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "20000",
+            "trace_no": "160135",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:44:38",
+            "amount": "30000",
+            "trace_no": "468845",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "10000",
+            "trace_no": "145273",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:42:50",
+            "amount": "20000",
+            "trace_no": "160135",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        },
+        {
+            "ben_id": "970406",
+            "from_account": "111222",
+            "to_account": "6666688884",
+            "local_date": "1017",
+            "settlementDate": "1017",
+            "local_time": "17/10/2023 15:44:38",
+            "amount": "30000",
+            "trace_no": "468845",
+            "ref_code": "3290970412AgIIrG",
+            "respcode": "00",
+            "ben_respcode": "00",
+            "f60": "04",
+            "proc_code": "912020",
+            "trans_content": "huynt chuyen khoan",
+            "f120": "NGUYEN VAN B"
+        }
+    ]
     const [data, setData] = useState([])
     const [showDetailModal, setShowDetailModal] = useState(false)
     const [modalData, setModalData] = useState({})
@@ -147,7 +147,7 @@ const Home = () => {
         setModalData(item)
     }
 
-    const rows = data.map((element, index) => (
+    const rows = fake.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td className="text-sm">{index + 1}</Table.Td>
             <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
@@ -162,8 +162,23 @@ const Home = () => {
         <div className='flex flex-row xs:flex-col xl:flex-row w-full gap-2 xs:gap-2 lg:gap-2 justify-start items-center'>
             <div className="flex flex-col w-1/3 xs:w-full xl:w-1/3 h-full gap-2">
                 {/* left */}
-                <div className="flex flex-1 flex-col w-full justify-center items-start gap-2">
-                    <div className="flex flex-1 flex-col w-full bg-white p-2">
+                <div className="flex flex-1 flex-col w-full  bg-white justify-center items-center  p-2 gap-2">
+                    <RingProgress
+                        // className="flex w-full h-full"
+                        size={340}
+                        thickness={64}
+                        //   label={
+                        //     <Text size="xs" ta="center" px="xs" style={{ pointerEvents: 'none' }}>
+                        //       Hover sections to see tooltips
+                        //     </Text>
+                        //   }
+                        sections={[
+                            { value: 40, color: 'cyan', tooltip: 'Documents – 40 Gb' },
+                            { value: 25, color: 'orange', tooltip: 'Apps – 25 Gb' },
+                            { value: 15, color: 'grape', tooltip: 'Other – 15 Gb' },
+                        ]}
+                    />
+                    {/* <div className="flex flex-1 flex-col w-full ">
                         <Divider my="xs" variant="dashed" label="Tỉ lệ giao dịch tháng 10/2023" labelPosition="left" className="flex w-full" classNames={{ label: classes.label }} />
                         <div className="flex flex-1 flex-row w-full max-w-full">
                             <div className="flex flex-col flex-1 items-center justify-center">
@@ -202,9 +217,9 @@ const Home = () => {
                                 <p className="text-xs">Không thành công</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                <div className="flex flex-1 w-full bg-white p-2 justify-center items-center">
+                <div className="flex flex-1 w-full bg-white  justify-center items-center p-2">
                     {/* pie chart */}
                     <PieChart />
                 </div>
