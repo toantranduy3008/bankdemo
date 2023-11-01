@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { TextInput, Accordion, Tooltip, Divider, ScrollArea, ActionIcon } from "@mantine/core"
+import { TextInput, Accordion, Tooltip, Divider, ScrollArea, ActionIcon, Switch, Table, Modal } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import classes from './Inquiry.module.css'
 import dayjs from "dayjs"
@@ -10,6 +10,9 @@ import { numberWithCommas, setBadge } from "../../services/Utilities"
 import { IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
 
 const Inquiry = () => {
+    const [tableMode, setTableMode] = useState(true)
+    const [showDetailModal, setShowDetailModal] = useState(false)
+    const [modalData, setModalData] = useState({})
     const fake = [
         {
             "ben_id": "970406",
@@ -184,6 +187,7 @@ const Inquiry = () => {
     ]
 
     useEffect(() => {
+        // setData(fake)
         setLoading(true)
         const dateS = `${dayjs(date).get('date')}`.length === 1 ? `0${dayjs(date).get('date')}` : `${dayjs(date).get('date')}`
         const monthS = `${dayjs(date).get('month') + 1}`.length === 1 ? `0${dayjs(date).get('month') + 1}` : `${dayjs(date).get('month') + 1}`
@@ -218,6 +222,23 @@ const Inquiry = () => {
         setOrderId(e.target.value)
     }
 
+    const rows = data.map((element, index) => (
+        <Table.Tr key={element.trace_no}>
+            <Table.Td className="text-sm">{index + 1}</Table.Td>
+            <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
+            <Table.Td className="text-sm">{setBadge(element.respcode)}</Table.Td>
+            <Table.Td className="text-sm">Vinabank</Table.Td>
+            <Table.Td className="text-sm">Đông Á Bank</Table.Td>
+            <Table.Td className="text-sm">{numberWithCommas(element.amount)}</Table.Td>
+            <Table.Td className="text-sm">{element.local_time}</Table.Td>
+        </Table.Tr>
+    ));
+
+    const handleShowDetailTransaction = (e, item) => {
+        setShowDetailModal(true)
+        setModalData(item)
+    }
+
     const handleSearch = () => {
         setLoading(true)
         const dateS = `${dayjs(date).get('date')}`.length === 1 ? `0${dayjs(date).get('date')}` : `${dayjs(date).get('date')}`
@@ -247,6 +268,7 @@ const Inquiry = () => {
     return (
         <div className="flex flex-col w-full h-full gap-10 xs:gap-5 md:gap-10">
             <div className="flex flex-col w-full h-full bg-gradient-to-r from-[#7474BF] to-[#348AC7] justify-start items-center shadow-sm">
+
                 <div className="flex flex-row xs:flex-col lg:flex-row w-full h-14 xs:h-28 lg:h-14 justify-center items-center gap-2 p-2">
                     <div className="flex h-full xs:w-full lg:w-11/12 gap-2">
                         <TextInput
@@ -285,19 +307,27 @@ const Inquiry = () => {
                         </ActionIcon>
                     </div>
                 </div>
+
                 <div className="flex flex-col w-full justify-center items-start gap-2 p-2">
+                    <Switch
+                        size="sm"
+                        onLabel="ON"
+                        offLabel="OFF"
+                        label={<p className="text-white text-sm m-0 hover:cursor-pointer">Xem dạng bảng</p>}
+                        color="teal"
+                        checked={tableMode} onChange={(event) => setTableMode(event.currentTarget.checked)}
+                        classNames={{
+                            track: classes.track
+                        }}
+                    />
                     <p className="text-white text-sm m-0">* Mã giao dịch bao gồm 6 ký tự hoặc để trống.</p>
                     <p className="text-white text-sm m-0">* Trường hợp không nhập mã giao dịch, hệ thống sẽ tìm ra 10 giao dịch gần nhất trong ngày tìm kiếm.</p>
                 </div>
             </div>
 
-            <div className="flex flex-col w-full h-full justify-center items-start">
-                <ScrollArea
-                    // offsetScrollbars
-                    scrollbarSize={8}
-                    className="h-[28rem] xs:h-full xl:h-[28rem] 3xl:h-[52rem] w-full"
-                    scrollHideDelay={0}
-                >
+            <div className="flex flex-col w-full h-full max-w-full overflow-x-auto justify-center items-start">
+                {
+                    !tableMode &&
                     <Accordion variant="contained" className="flex flex-col w-full h-full">
                         {data.map((item, index) => (
                             <Accordion.Item value={item.trace_no} className="flex flex-col w-full bg-white" key={item.trace_no}>
@@ -412,8 +442,96 @@ const Inquiry = () => {
                             </Accordion.Item>
                         ))}
                     </Accordion>
-                </ScrollArea>
+                }
+                {
+                    tableMode &&
+                    <Table striped highlightOnHover className=" bg-white w-full">
+                        <Table.Thead>
+                            <Table.Tr>
+                                <Table.Th>#</Table.Th>
+                                <Table.Th>Mã giao dịch</Table.Th>
+                                <Table.Th>Trạng thái giao dịch</Table.Th>
+                                <Table.Th>Ngân hàng chuyển</Table.Th>
+                                <Table.Th>Ngân hàng nhận</Table.Th>
+                                <Table.Th>Số tiền</Table.Th>
+                                <Table.Th>Thời gian GD</Table.Th>
+                            </Table.Tr>
+                        </Table.Thead>
+                        <Table.Tbody>{rows}</Table.Tbody>
+                    </Table>
+                }
             </div>
+
+            <Modal opened={showDetailModal} onClose={setShowDetailModal} title="Chi tiết giao dịch">
+                <ScrollArea
+                    offsetScrollbars
+                    scrollbarSize={8}
+                    className="h-[30rem] xs:h-full xl:h-[30rem]"
+                    scrollHideDelay={0}
+                >
+                    <div className="flex flex-col w-full items-center justify-start">
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số trace</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.trace_no}</p>
+                        </div>
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã giao dịch</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.ref_code}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Trạng thái giao dịch tại Napas</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{setBadge(modalData.respcode)}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Ngân hàng chuyển</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">Vinabank</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Tài khoản chuyển</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.from_account}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Ngân hàng nhận</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">Đông Á Bank</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Tài khoản nhận</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.to_account}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Người nhận</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.f120}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số tiền</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{numberWithCommas(modalData.amount ?? 0)}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Thời gian GD</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.local_time}</p>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Trạng thái giao dịch tại NHTH</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{setBadge(modalData.ben_respcode)}</p>
+                        </div>
+                        <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Nội dung</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.trans_content}</p>
+                        </div>
+                    </div>
+                </ScrollArea>
+
+
+            </Modal>
         </div>
     )
 }
