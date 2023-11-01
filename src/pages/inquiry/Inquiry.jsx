@@ -185,8 +185,10 @@ const Inquiry = () => {
 
     useEffect(() => {
         setLoading(true)
+        const dateS = `${dayjs(date).get('date')}`.length === 1 ? `0${dayjs(date).get('date')}` : `${dayjs(date).get('date')}`
+        const monthS = `${dayjs(date).get('month') + 1}`.length === 1 ? `0${dayjs(date).get('month') + 1}` : `${dayjs(date).get('month') + 1}`
         const requestBody = {
-            f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`
+            f13: `${monthS}${dateS}`
         }
 
         axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
@@ -218,9 +220,10 @@ const Inquiry = () => {
 
     const handleSearch = () => {
         setLoading(true)
+        const dateS = `${dayjs(date).get('date')}`.length === 1 ? `0${dayjs(date).get('date')}` : `${dayjs(date).get('date')}`
+        const monthS = `${dayjs(date).get('month') + 1}`.length === 1 ? `0${dayjs(date).get('month') + 1}` : `${dayjs(date).get('month') + 1}`
         const requestBody = {
-            f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`,
-            f63: orderId
+            f13: `${monthS}${dateS}`
         }
 
         axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
@@ -295,7 +298,7 @@ const Inquiry = () => {
                     scrollHideDelay={0}
                 >
                     <Accordion variant="contained" className="flex flex-col w-full h-full">
-                        {fake.map((item, index) => (
+                        {data.map((item, index) => (
                             <Accordion.Item value={item.trace_no} className="flex flex-col w-full bg-white" key={item.trace_no}>
                                 <Accordion.Control
                                     icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}>

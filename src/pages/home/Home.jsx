@@ -120,17 +120,18 @@ const Home = () => {
     const [modalData, setModalData] = useState({})
     useEffect(() => {
         const date = new Date()
-
+        const dateS = `${dayjs(date).get('date')}`.length === 1 ? `0${dayjs(date).get('date')}` : `${dayjs(date).get('date')}`
+        const monthS = `${dayjs(date).get('month') + 1}`.length === 1 ? `0${dayjs(date).get('month') + 1}` : `${dayjs(date).get('month') + 1}`
         const requestBody = {
-            f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`
+            f13: `${monthS}${dateS}`
         }
 
         axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
             .then(res => {
                 setData(res.data.payload)
-                if (res.data.payload.length === 0) {
-                    NotificationServices.info(`Không tìm thấy giao dịch`)
-                }
+                // if (res.data.payload.length === 0) {
+                //     NotificationServices.info(`Không tìm thấy giao dịch`)
+                // }
 
             })
             .catch(err => {
@@ -147,7 +148,7 @@ const Home = () => {
         setModalData(item)
     }
 
-    const rows = fake.map((element, index) => (
+    const rows = data.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td className="text-sm">{index + 1}</Table.Td>
             <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
