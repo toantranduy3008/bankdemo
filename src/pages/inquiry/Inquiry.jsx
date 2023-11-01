@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TextInput, Accordion, Tooltip, Divider, ScrollArea, ActionIcon } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import classes from './Inquiry.module.css'
@@ -182,6 +182,29 @@ const Inquiry = () => {
             "f120": "NGUYEN VAN B"
         }
     ]
+
+    useEffect(() => {
+        setLoading(true)
+        const requestBody = {
+            f13: `${dayjs(date).get('month') + 1}${dayjs(date).get('date')}`
+        }
+
+        axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
+            .then(res => {
+                setData(res.data.payload)
+                if (res.data.payload.length === 0) {
+                    NotificationServices.info(`Không tìm thấy giao dịch`)
+                }
+
+            })
+            .catch(err => {
+                const { status, statusText } = err.response
+                NotificationServices.error(`${status}: ${statusText}`)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+    }, [])
     const [date, setDate] = useState(new Date());
     const [orderId, setOrderId] = useState('')
     const [data, setData] = useState([])
