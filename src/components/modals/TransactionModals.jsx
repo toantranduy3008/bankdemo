@@ -4,16 +4,7 @@ import { IconNorthStar, IconInfoCircle } from '@tabler/icons-react';
 
 import { numberWithCommas } from '../../services/Utilities';
 import classess from './Modal.module.css'
-const setBadge = (status) => {
-    return (
-        <Badge
-            size="md"
-            color={status === '00' ? 'green' : status === '68' ? 'yellow' : 'red'}
-        >
-            {status === '00' ? 'Thành công' : status === '68' ? 'Đang xử lý' : 'Thất bại'}
-        </Badge>
-    )
-}
+import { setBadge } from '../../services/Utilities';
 // eslint-disable-next-line react/prop-types
 export const TransactionResultModal = ({ data, opened, onClose }) => {
 

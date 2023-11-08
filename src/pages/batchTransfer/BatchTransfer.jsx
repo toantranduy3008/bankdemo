@@ -52,7 +52,7 @@ const BatchTransfer = () => {
 
         let a = totalAmountDetach
         let b = totalAmountDetach
-        const list = [450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
+        const list = [499, 450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
         const output = []
         let total = 0
         while (total < b) {
