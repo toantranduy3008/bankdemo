@@ -13,179 +13,10 @@ const Inquiry = () => {
     const [tableMode, setTableMode] = useState(true)
     const [showDetailModal, setShowDetailModal] = useState(false)
     const [modalData, setModalData] = useState({})
-    const fake = [
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "20000",
-            "trace_no": "160135",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:44:38",
-            "amount": "30000",
-            "trace_no": "468845",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "20000",
-            "trace_no": "160135",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:44:38",
-            "amount": "30000",
-            "trace_no": "468845",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "20000",
-            "trace_no": "160135",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:44:38",
-            "amount": "30000",
-            "trace_no": "468845",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        },
-        {
-            "ben_id": "970406",
-            "from_account": "111222",
-            "to_account": "6666688884",
-            "local_date": "1017",
-            "settlementDate": "1017",
-            "local_time": "17/10/2023 15:42:50",
-            "amount": "10000",
-            "trace_no": "145273",
-            "ref_code": "3290970412AgIIrG",
-            "respcode": "00",
-            "ben_respcode": "00",
-            "f60": "04",
-            "proc_code": "912020",
-            "trans_content": "huynt chuyen khoan",
-            "f120": "NGUYEN VAN B"
-        }
-    ]
-
+    const [date, setDate] = useState(new Date());
+    const [orderId, setOrderId] = useState('')
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         // setData(fake)
         setLoading(true)
@@ -211,10 +42,7 @@ const Inquiry = () => {
                 setLoading(false)
             })
     }, [])
-    const [date, setDate] = useState(new Date());
-    const [orderId, setOrderId] = useState('')
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
+
     const handleChangeDate = (e) => {
         setDate(e)
     }
@@ -420,7 +248,7 @@ const Inquiry = () => {
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
                                                     <p className="flex flex-1 font-semibold  justify-start items-center">Trạng thái tại NHNL</p>
-                                                    <p className="flex flex-1 justify-start items-center">{item.ben_respcode ? setBadge(item.ben_respcode) : 'Không phản hồi'}</p>
+                                                    <p className="flex flex-1 justify-start items-center">{item.ben_respcode === '63' ? '' : setBadge(item.ben_respcode)}</p>
                                                 </div>
                                             </div>
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -521,7 +349,7 @@ const Inquiry = () => {
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Trạng thái giao dịch tại NHTH</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">{setBadge(modalData.ben_respcode)}</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.ben_respcode === '63' ? '' : setBadge(modalData.ben_respcode)}</p>
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Nội dung</p>
