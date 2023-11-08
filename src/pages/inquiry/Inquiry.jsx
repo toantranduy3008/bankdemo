@@ -163,8 +163,10 @@ const Inquiry = () => {
                                     icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}>
                                     <div className="flex flex-row w-1/2 xs:w-full lg:w-1/2">
                                         <p className="flex flex-1 justify-start items-center">{`Giao dịch ${data.length > 1 ? index + 1 : ''}`}</p>
+                                        <p className="flex flex-1 xs:hidden md:block justify-start items-center">{item.ref_code}</p>
                                         <p className="flex flex-1 xs:hidden md:block justify-start items-center">{numberWithCommas(item.amount)}</p>
                                         <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
+                                        <p className="flex flex-1 justify-start items-center">{setBadge(item.local_time)}</p>
                                     </div>
                                 </Accordion.Control>
                                 <Accordion.Panel>
@@ -357,8 +359,6 @@ const Inquiry = () => {
                         </div>
                     </div>
                 </ScrollArea>
-
-
             </Modal>
         </div>
     )
