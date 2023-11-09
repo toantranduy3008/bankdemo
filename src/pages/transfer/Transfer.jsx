@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { Divider, TextInput, Loader, Textarea, Button, NumberInput, LoadingOverlay } from "@mantine/core"
+import { Divider, TextInput, Loader, Textarea, Button, NumberInput, LoadingOverlay, Select } from "@mantine/core"
 import { IconUsers, IconCreditCard, IconDatabase, IconCoin } from "@tabler/icons-react"
 import classes from './Transfer.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
@@ -22,10 +22,37 @@ const Transfer = () => {
     const [loadingAccount, setLoadingAccount] = useState(false)
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
-
+    const [listBank, setListBank] = useState([{ value: '970406', label: 'ĐÔNG Á BANK' }])
+    const [bankId, setBankId] = useState("970406")
     useEffect(() => {
         accountRef.current.focus();
+        axios.get('/bankdemo/api/payment/getListBank', { headers: authHeader() })
+            .then(res => {
+                const { listBank } = res.data
+                const banks = listBank.map(item => {
+                    return {
+                        value: item.id,
+                        label: item.name
+                    }
+                })
+                setBankId(banks[0].value)
+                setListBank(banks)
+            })
+            .catch(() => {
+                // accountRef.current.focus()
+                NotificationServices.error('Không tìm được danh sách ngân hàng thụ hưởng.')
+                return;
+            })
+            .finally(() => { setLoadingAccount(false) })
+
     }, [])
+
+    const handleChangeBank = (e) => {
+        setBankId(e)
+        setToAccount('')
+        setReceiver('')
+        setRefCode('')
+    }
 
     const handleChangeToAccount = (e) => {
         setToAccount(e.target.value.trim())
@@ -36,7 +63,7 @@ const Transfer = () => {
     const handleSearchAccount = () => {
         if (toAccount) {
             setLoadingAccount(true)
-            axios.get(`/bankdemo/api/payment/investigatename?creditorAgent=970406&toAccount=${toAccount}`, { headers: authHeader() })
+            axios.get(`/bankdemo/api/payment/investigatename?creditorAgent=${bankId}&toAccount=${toAccount}`, { headers: authHeader() })
                 .then(res => {
                     const { f39, f63, f120 } = res.data
                     if (f39 !== '00') {
@@ -108,7 +135,7 @@ const Transfer = () => {
         const requestBody = {
             amount: amount,
             content: content,
-            creditorAgent: '970406',
+            creditorAgent: bankId,
             f63: refCode,
             toAccount: toAccount
         }
@@ -157,8 +184,19 @@ const Transfer = () => {
                     </div>
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row">
-                        <p className="flex flex-1 text-base ">Ngân hàng</p>
-                        <p className="flex flex-1 justify-end">Đông Á Bank</p>
+                        <p className="flex flex-1 text-base items-center">Ngân hàng</p>
+                        {/* <p className="flex flex-1 justify-end">Đông Á Bank</p> */}
+                        <Select
+                            data={listBank}
+                            defaultValue={bankId}
+                            variant="unstyled"
+                            classNames={{
+                                input: classes.input,
+                                wrapper: classes.wrapper
+                            }}
+                            className="flex flex-1 items-center justify-end"
+                            onChange={handleChangeBank}
+                        />
                     </div>
                     <div className="flex flex-row">
                         <p className="flex flex-1 text-base  items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>
