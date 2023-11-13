@@ -54,6 +54,7 @@ const Inquiry = () => {
         <Table.Tr key={element.trace_no}>
             <Table.Td className="text-sm">{index + 1}</Table.Td>
             <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
+            <Table.Td className="text-sm">{element.trace_no}</Table.Td>
             <Table.Td className="text-sm">{setBadge(element.respcode)}</Table.Td>
             <Table.Td className="text-sm">Vinabank</Table.Td>
             <Table.Td className="text-sm">Đông Á Bank</Table.Td>
@@ -157,15 +158,33 @@ const Inquiry = () => {
                 {
                     !tableMode &&
                     <Accordion variant="contained" className="flex flex-col w-full h-full">
+                        {/* <Accordion.Item value="#" className="flex flex-col w-full bg-white" key="#">
+                            <Accordion.Control>
+                                <div className="flex flex-row w-full gap-2 text-sm">
+                                    <p className="flex flex-1 xs:hidden lg:flex justify-start items-center font-semibold ">STT</p>
+                                    <p className="flex flex-1 justify-start items-center">Mã tham chiếu (Ref ID)</p>
+                                    <p className="flex flex-1 justify-start items-center">Số lưu vết</p>
+                                    <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Ngân hàng chuyển</p>
+                                    <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Ngân hàng nhận</p>
+                                    <p className="flex flex-1 justify-start items-center">Trạng thái tại Napas</p>
+                                    <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Số tiền</p>
+                                    <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Thời gian GD</p>
+                                </div>
+                            </Accordion.Control>
+                        </Accordion.Item> */}
                         {data.map((item, index) => (
                             <Accordion.Item value={item.trace_no} className="flex flex-col w-full bg-white" key={item.trace_no}>
                                 <Accordion.Control
-                                    icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}>
+                                    icon={item.respcode === '00' ? <IconDiscountCheck className=" text-green-500" /> : item.respcode === '68' ? <IconLoader className=" text-yellow-500" /> : <IconExclamationCircle className=" text-red-500" />}
+                                >
                                     <div className="flex flex-row w-full gap-2">
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{`Giao dịch ${data.length > 1 ? index + 1 : ''}`}</p>
-                                        <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
-                                        <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
+                                        <p className="flex flex-1  justify-start items-center">{item.ref_code}</p>
+                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{item.trace_no}</p>
+                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Vina Bank</p>
+                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Đông Á Bank</p>
                                         <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
+                                        <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{item.local_time}</p>
                                     </div>
                                 </Accordion.Control>
@@ -211,7 +230,7 @@ const Inquiry = () => {
                                             </div>
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
-                                                    <p className="flex flex-1 font-semibold  justify-start items-center">Mã giao dịch</p>
+                                                    <p className="flex flex-1 font-semibold  justify-start items-center">Số tham chiếu (Ref ID)</p>
                                                     <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
                                                 </div>
                                             </div>
@@ -262,7 +281,7 @@ const Inquiry = () => {
 
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
-                                                    <p className="flex flex-1 font-semibold  justify-start items-center">Số trace</p>
+                                                    <p className="flex flex-1 font-semibold  justify-start items-center">Số lưu vết</p>
                                                     <p className="flex flex-1 justify-start items-center">{item.trace_no}</p>
                                                 </div>
                                             </div>
@@ -279,7 +298,8 @@ const Inquiry = () => {
                         <Table.Thead>
                             <Table.Tr>
                                 <Table.Th>#</Table.Th>
-                                <Table.Th>Mã giao dịch</Table.Th>
+                                <Table.Th>Số tham chiếu (Ref ID)</Table.Th>
+                                <Table.Th>Số lưu vết</Table.Th>
                                 <Table.Th>Trạng thái giao dịch</Table.Th>
                                 <Table.Th>Ngân hàng chuyển</Table.Th>
                                 <Table.Th>Ngân hàng nhận</Table.Th>
@@ -301,11 +321,11 @@ const Inquiry = () => {
                 >
                     <div className="flex flex-col w-full items-center justify-start">
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số trace</p>
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số lưu vết</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.trace_no}</p>
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã giao dịch</p>
+                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã tham chiếu (Ref ID)</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.ref_code}</p>
                         </div>
 
