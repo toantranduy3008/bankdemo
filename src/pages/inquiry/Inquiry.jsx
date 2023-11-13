@@ -74,7 +74,7 @@ const Inquiry = () => {
         const monthS = `${dayjs(date).get('month') + 1}`.length === 1 ? `0${dayjs(date).get('month') + 1}` : `${dayjs(date).get('month') + 1}`
         const requestBody = {
             f13: `${monthS}${dateS}`,
-            f63: orderId
+            f63: orderId.trim()
         }
 
         axios.post('/bankdemo/api/payment/tranStatus', requestBody, { headers: authHeader() })
