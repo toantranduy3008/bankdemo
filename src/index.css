@@ -19,6 +19,10 @@
   h1 {
     @apply text-xl font-medium capitalize;
   }
+
+  p {
+    @apply mt-[10px] mb-[10px]
+  }
 }
 
 .link {

@@ -312,7 +312,7 @@ const Inquiry = () => {
                 }
             </div>
 
-            <Modal opened={showDetailModal} onClose={setShowDetailModal} title="Chi tiết giao dịch">
+            <Modal opened={showDetailModal} onClose={setShowDetailModal} title={<p className="flex flex-1 justify-end items-center font-bold uppercase text-sm">Chi tiết giao dịch</p>}>
                 <ScrollArea
                     offsetScrollbars
                     scrollbarSize={8}
@@ -321,60 +321,60 @@ const Inquiry = () => {
                 >
                     <div className="flex flex-col w-full items-center justify-start">
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số lưu vết</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Số lưu vết</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.trace_no}</p>
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Mã tham chiếu (Ref ID)</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Mã tham chiếu (Ref ID)</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.ref_code}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Trạng thái giao dịch tại Napas</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Trạng thái GD tại Napas</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{setBadge(modalData.respcode)}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Ngân hàng chuyển</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">Vinabank</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Ngân hàng chuyển</p>
+                            <p className="flex flex-1 justify-start items-center text-sm gap-4">Vinabank <img src="./TCB-logo.svg" className="w-10" /></p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Tài khoản chuyển</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Tài khoản chuyển</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.from_account}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Ngân hàng nhận</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">Đông Á Bank</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Ngân hàng nhận</p>
+                            <p className="flex flex-1 justify-start items-center text-sm gap-4">Đông Á Bank <img src="./DAB-logo.svg" className="w-10" /></p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Tài khoản nhận</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Tài khoản nhận</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.to_account}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Người nhận</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Người nhận</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.f120}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Số tiền</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Số tiền</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{numberWithCommas(modalData.amount ?? 0)}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Thời gian GD</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Thời gian GD</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.local_time}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Trạng thái giao dịch tại NHTH</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.ben_respcode === '63' ? '' : setBadge(modalData.ben_respcode)}</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Trạng thái GD tại NHTH</p>
+                            <p className="flex flex-1 justify-start items-center text-sm text-right">{modalData.ben_respcode === '63' ? '' : setBadge(modalData.ben_respcode)}</p>
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Nội dung</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Nội dung</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.trans_content}</p>
                         </div>
                     </div>
