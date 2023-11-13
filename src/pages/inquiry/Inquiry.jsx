@@ -297,7 +297,7 @@ const Inquiry = () => {
                     <Table striped highlightOnHover className=" bg-white w-full">
                         <Table.Thead>
                             <Table.Tr>
-                                <Table.Th>#</Table.Th>
+                                <Table.Th>STT</Table.Th>
                                 <Table.Th>Số tham chiếu (Ref ID)</Table.Th>
                                 <Table.Th>Số lưu vết</Table.Th>
                                 <Table.Th>Trạng thái giao dịch</Table.Th>
