@@ -24,7 +24,7 @@ export const TransactionResultModal = ({ data, opened, onClose }) => {
 
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
                     <p className='flex flex-1 font-semibold justify-end items-center text-right'>Ngân hàng nhận lệnh</p>
-                    <p className='flex flex-1 justify-start items-center text-left gap-2'>Đông Á Bank  <img src="./NHNL.svg" className="w-7" /></p>
+                    <p className='flex flex-1 justify-start items-center text-left gap-2'>TH Bank  <img src="./NHNL.svg" className="w-7" /></p>
                 </div>
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
                     <p className='flex flex-1 font-semibold justify-end items-center text-right'>Tài khoản nhận</p>

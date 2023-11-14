@@ -30,7 +30,7 @@ const BatchTransfer = () => {
     const [showModalResult, setShowModalResult] = useState(false)
     const [autoDetach, setAutoDetach] = useState(true)
     const [showDetachModal, setShowDetachModal] = useState(false)
-    const [listBank, setListBank] = useState([{ value: '970406', label: 'ĐÔNG Á BANK' }])
+    const [listBank, setListBank] = useState([{ value: '970406', label: 'TH Bank' }])
     const [bankId, setBankId] = useState("970406")
     useEffect(() => {
         accountRef.current.focus();

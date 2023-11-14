@@ -58,7 +58,7 @@ const Inquiry = () => {
             <Table.Td className="text-sm">{element.trace_no}</Table.Td>
             <Table.Td className="text-sm">{setBadge(element.respcode)}</Table.Td>
             <Table.Td className=" text-sm gap-1">Vinabank <img src="./NHPL.svg" className="w-5" /></Table.Td>
-            <Table.Td className=" text-sm gap-1">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></Table.Td>
+            <Table.Td className=" text-sm gap-1">TH Bank <img src="./NHNL.svg" className="w-5" /></Table.Td>
             <Table.Td className="text-sm">{numberWithCommas(element.amount)}</Table.Td>
             <Table.Td className="text-sm">{element.local_time}</Table.Td>
         </Table.Tr>
@@ -184,7 +184,7 @@ const Inquiry = () => {
                                         <p className="flex flex-1  justify-start items-center">{maskRefCode(item.ref_code)}</p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{item.trace_no}</p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Vina Bank </p>
-                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Đông Á Bank</p>
+                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">TH Bank</p>
                                         <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
                                         <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{item.local_time}</p>
@@ -245,7 +245,7 @@ const Inquiry = () => {
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
                                                     <p className="flex flex-1 font-semibold  justify-start items-center">Ngân hàng nhận lệnh</p>
-                                                    <p className="flex flex-1 justify-start items-center gap-2">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></p>
+                                                    <p className="flex flex-1 justify-start items-center gap-2">TH Bank <img src="./NHNL.svg" className="w-5" /></p>
                                                 </div>
                                             </div>
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -327,7 +327,7 @@ const Inquiry = () => {
                             <p className="flex flex-1 justify-start items-center text-sm">{modalData.trace_no}</p>
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
-                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Mã tham chiếu (Ref ID)</p>
+                            <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Số tham chiếu (Ref ID)</p>
                             <p className="flex flex-1 justify-start items-center text-sm">{maskRefCode(modalData.ref_code)}</p>
                         </div>
 
@@ -348,7 +348,7 @@ const Inquiry = () => {
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Ngân hàng nhận</p>
-                            <p className="flex flex-1 justify-start items-center text-sm gap-2">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></p>
+                            <p className="flex flex-1 justify-start items-center text-sm gap-2">TH Bank <img src="./NHNL.svg" className="w-5" /></p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">

@@ -154,7 +154,7 @@ const Home = () => {
             <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
             <Table.Td className="text-sm">{setBadge(element.respcode)}</Table.Td>
             <Table.Td className="text-sm">Vinabank</Table.Td>
-            <Table.Td className="text-sm">Đông Á Bank</Table.Td>
+            <Table.Td className="text-sm">TH Bank</Table.Td>
             <Table.Td className="text-sm">{numberWithCommas(element.amount)}</Table.Td>
             <Table.Td className="text-sm">{element.local_time}</Table.Td>
         </Table.Tr>
@@ -294,7 +294,7 @@ const Home = () => {
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-start items-center font-semibold capitalize text-sm">Ngân hàng nhận</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">Đông Á Bank</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">TH Bank</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">

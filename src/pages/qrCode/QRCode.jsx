@@ -197,7 +197,7 @@ const QRCode = () => {
                         <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
                         <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold ">Ngân hàng</p>
-                            <p className="flex flex-1 justify-end">Đông Á Bank</p>
+                            <p className="flex flex-1 justify-end">TH Bank</p>
                         </div>
                         <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold  items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>

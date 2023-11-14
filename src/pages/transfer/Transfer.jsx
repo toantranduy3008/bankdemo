@@ -22,7 +22,7 @@ const Transfer = () => {
     const [loadingAccount, setLoadingAccount] = useState(false)
     const [loadingTransfer, setLoadingTransfer] = useState(false)
     const [showModalResult, setShowModalResult] = useState(false)
-    const [listBank, setListBank] = useState([{ value: '970406', label: 'ĐÔNG Á BANK' }])
+    const [listBank, setListBank] = useState([{ value: '970406', label: 'TH Bank' }])
     const [bankId, setBankId] = useState("970406")
     useEffect(() => {
         accountRef.current.focus();
@@ -185,7 +185,7 @@ const Transfer = () => {
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
                     <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold items-center">Ngân hàng</p>
-                        {/* <p className="flex flex-1 justify-end">Đông Á Bank</p> */}
+                        {/* <p className="flex flex-1 justify-end">TH Bank</p> */}
                         <Select
                             data={listBank}
                             defaultValue={bankId}
