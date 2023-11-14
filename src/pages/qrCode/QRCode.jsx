@@ -5,7 +5,7 @@ import QrReader from 'react-qr-scanner'
 import { QRPay } from 'vietnam-qr-pay';
 import classes from './QRCode.module.css'
 import { authHeader, getCurrentUser } from "../../services/AuthServices"
-import { formatVietnamese, validateInValidAmount } from "../../services/Utilities"
+import { formatVietnamese, maskRefCode, validateInValidAmount } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import axios from "axios"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
@@ -186,20 +186,20 @@ const QRCode = () => {
                     <div className="relative flex flex-col w-1/3 xs:w-full lg:w-1/3 h-full shadow-md xs:shadow-none lg:shadow-md bg-white p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl">
                         <LoadingOverlay visible={loadingTransfer} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                         <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold">Tài khoản nguồn</p>
                             <p className="flex flex-1 justify-end">{userInfo?.accountNumber}</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold ">Tên người gửi</p>
                             <p className="flex flex-1 justify-end text-end">{userInfo?.fullName}</p>
                         </div>
                         <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold ">Ngân hàng</p>
                             <p className="flex flex-1 justify-end">Đông Á Bank</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold  items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>
                             <TextInput
                                 variant="unstyled"
@@ -216,15 +216,15 @@ const QRCode = () => {
                                 readOnly
                             />
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold  items-center">Tên người nhận</p>
                             <p className="flex flex-1 justify-end text-end">{receiver}</p>
                         </div>
-                        <div className="flex flex-row">
-                            <p className="flex flex-1 text-base font-semibold  items-center">Mã giao dịch</p>
-                            <p className="flex flex-1 justify-end">{refCode}</p>
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                            <p className="flex flex-1 text-base font-semibold  items-center">Số tham chiếu (Ref ID)</p>
+                            <p className="flex flex-1 justify-end">{maskRefCode(refCode)}</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold  items-center">Số tiền</p>
                             <NumberInput
                                 variant="unstyled"
@@ -241,7 +241,7 @@ const QRCode = () => {
                                 className="flex flex-1 items-center justify-end"
                             />
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 text-base font-semibold ">Nội dung chuyển tiền</p>
                             <Textarea
                                 placeholder="Nội dung chuyển tiền"
@@ -256,7 +256,7 @@ const QRCode = () => {
                                 onChange={handleChangeContent}
                             />
                         </div>
-                        <div className="flex flex-row gap-2">
+                        <div className="flex flex-row gap-2 ">
                             <Button
                                 variant="filled"
                                 className="xs:w-full sm:w-[12rem]"

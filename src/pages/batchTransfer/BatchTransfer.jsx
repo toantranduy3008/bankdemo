@@ -6,7 +6,7 @@ import { NumberInput, ScrollArea, Divider, Badge, TextInput, Loader, Textarea, B
 import classes from './Demo.module.css'
 import { IconTrash, IconUsers, IconCreditCard, IconDatabase, IconCirclePlus, IconInfoCircle } from "@tabler/icons-react"
 import axios from "axios"
-import { numberWithCommas } from "../../services/Utilities"
+import { maskRefCode, numberWithCommas } from "../../services/Utilities"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import { getCurrentUser, authHeader } from "../../services/AuthServices"
 import { TransactionResultModal } from "../../components/modals/TransactionModals"
@@ -19,6 +19,7 @@ const BatchTransfer = () => {
     const [listTransaction, setListTransaction] = useState([])
     const [totalAmount, setTotalAmount] = useState(0)
     const [totalAmountDetach, setTotalAmountDetach] = useState(0)
+    // const [maxAmount] = useState(4999999999)
     const [toAccount, setToAccount] = useState('')
     const [receiver, setReceiver] = useState('')
     const [refCode, setRefCode] = useState('')
@@ -78,24 +79,40 @@ const BatchTransfer = () => {
             return
         }
 
+        const maxAmount = 499999999
         let a = totalAmountDetach
-        let b = totalAmountDetach
-        const list = [499, 450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
+        // let b = totalAmountDetach
+        // const list = [499, 450, 400, 350, 300, 250, 200, 150, 100, 50, 30, 20, 10, 5, 3, 2]
         const output = []
-        let total = 0
-        while (total < b) {
-            for (let i = 0; i < list.length; i++) {
-                if (a >= list[i] * 1000000) {
-                    output.push(list[i] * 1000000)
-                    total += list[i] * 1000000
-                    a -= list[i] * 1000000
-                } else {
-                    a > 0 && output.push(a)
-                    total += a
-                    break
-                }
+        // let total = 0
+        if (a > maxAmount) {
+            const mod = a % maxAmount
+            a -= mod
+            while (a >= maxAmount) {
+                output.push(maxAmount)
+                a -= maxAmount
             }
+
+            output.push(mod)
         }
+        else {
+            output.push(a)
+        }
+
+        // while (total < b) {
+
+        //     for (let i = 0; i < list.length; i++) {
+        //         if (a >= list[i] * 1000000) {
+        //             output.push(list[i] * 1000000)
+        //             total += list[i] * 1000000
+        //             a -= list[i] * 1000000
+        //         } else {
+        //             a > 0 && output.push(a)
+        //             total += a
+        //             break
+        //         }
+        //     }
+        // }
 
         setListTransaction(output)
         setTotalAmount(totalAmountDetach)
@@ -240,16 +257,16 @@ const BatchTransfer = () => {
                 {/* Thông tin chuyển khoản */}
                 <div className="flex flex-col flex-1 xs:w-full lg:w-1/3 h-full shadow-md xs:shadow-none lg:shadow-md p-2 xs:p-1 lg:p-2 transition duration-300 hover:shadow-xl bg-white">
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconCreditCard size={18} />Thông tin người chuyển</p>} labelPosition="left" variant="dashed" />
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold ">Tài khoản nguồn</p>
                         <p className="flex flex-1 justify-end">{userInfo?.accountNumber}</p>
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold ">Tên người gửi</p>
                         <p className="flex flex-1 justify-end text-end">{userInfo?.fullName}</p>
                     </div>
                     <Divider size={'xs'} label={<p className="flex text-base font-semibold text-gray-400 items-center gap-1"><IconDatabase size={18} />Thông tin người hưởng</p>} labelPosition="left" variant="dashed" />
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold ">Ngân hàng</p>
                         <Select
                             data={listBank}
@@ -263,7 +280,7 @@ const BatchTransfer = () => {
                             onChange={handleChangeBank}
                         />
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold  items-center gap-2">Số tài khoản {loadingAccount && <Loader size={18} className="flex items-center" />}</p>
                         <TextInput
                             variant="unstyled"
@@ -279,15 +296,15 @@ const BatchTransfer = () => {
                             ref={accountRef}
                         />
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold ">Tên người nhận</p>
                         <p className="flex flex-1 justify-end text-end">{receiver}</p>
                     </div>
-                    <div className="flex flex-row">
-                        <p className="flex flex-1 text-base font-semibold ">Mã giao dịch</p>
-                        <p className="flex flex-1 justify-end">{refCode}</p>
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
+                        <p className="flex flex-1 text-base font-semibold ">Số tham chiếu (Ref ID)</p>
+                        <p className="flex flex-1 justify-end">{maskRefCode(refCode)}</p>
                     </div>
-                    <div className="flex flex-row">
+                    <div className="flex flex-row hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                         <p className="flex flex-1 text-base font-semibold ">Nội dung chuyển tiền</p>
                         <Textarea
                             placeholder="Nội dung chuyển tiền"
@@ -358,10 +375,10 @@ const BatchTransfer = () => {
                     </div>
 
                     <div className="flex flex-col flex-grow h-full ">
-                        <div className="flex flex-row w-full">
-                            <p className="flex flex-row justify-start w-1/6  font-semibold">#</p>
+                        <div className="flex flex-row w-full pr-2">
+                            <p className="flex flex-row justify-start w-1/6  font-semibold">STT</p>
                             <p className="flex flex-row flex-grow justify-end  font-semibold">Số tiền</p>
-                            <p className="flex flex-row justify-end w-1/6  font-semibold text-right">##</p>
+                            <p className="flex flex-row justify-end w-2/6  font-semibold text-right">Hành động</p>
                         </div>
                         <ScrollArea
                             offsetScrollbars
@@ -371,7 +388,7 @@ const BatchTransfer = () => {
                         >
                             {
                                 listTransaction.map((item, index) => (
-                                    <div className="flex flex-row w-full items-center" key={index}>
+                                    <div className="flex flex-row w-full items-center hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 " key={index}>
                                         <p className="flex flex-row justify-start w-1/6">{index + 1}</p>
                                         <NumberInput
                                             variant="unstyled"
@@ -387,7 +404,7 @@ const BatchTransfer = () => {
                                             thousandSeparator=","
                                             hideControls
                                         />
-                                        <p className="flex flex-row justify-end w-1/6 text-red-500 text-right"><IconTrash className="w-5 h-5 hover:text-red-700 cursor-pointer" onClick={(e) => handleRemoveTransaction(e, index)} /></p>
+                                        <p className="flex flex-row justify-end w-2/6 text-red-500 text-right"><IconTrash className="w-5 h-5 hover:text-red-700 cursor-pointer" onClick={(e) => handleRemoveTransaction(e, index)} /></p>
                                     </div>
                                 ))
                             }

@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Modal, Badge } from '@mantine/core';
-import { IconNorthStar, IconInfoCircle } from '@tabler/icons-react';
-
-import { numberWithCommas } from '../../services/Utilities';
+import { Modal } from '@mantine/core';
+import { maskRefCode, numberWithCommas } from '../../services/Utilities';
 import classess from './Modal.module.css'
 import { setBadge } from '../../services/Utilities';
 // eslint-disable-next-line react/prop-types
@@ -26,7 +24,7 @@ export const TransactionResultModal = ({ data, opened, onClose }) => {
 
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
                     <p className='flex flex-1 font-semibold justify-end items-center text-right'>Ngân hàng nhận lệnh</p>
-                    <p className='flex flex-1 justify-start items-center text-left gap-2'>Đông Á Bank  <img src="./DAB-logo.svg" className="w-10" /></p>
+                    <p className='flex flex-1 justify-start items-center text-left gap-2'>Đông Á Bank  <img src="./NHNL.svg" className="w-7" /></p>
                 </div>
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
                     <p className='flex flex-1 font-semibold justify-end items-center text-right'>Tài khoản nhận</p>
@@ -37,8 +35,8 @@ export const TransactionResultModal = ({ data, opened, onClose }) => {
                     <p className='flex flex-1 justify-start items-center text-left'>{data.receiver}</p>
                 </div>
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
-                    <p className='flex flex-1 font-semibold justify-end items-center text-right'>Mã giao dịch</p>
-                    <p className='flex flex-1 justify-start items-center text-left'>{data.refCode}</p>
+                    <p className='flex flex-1 font-semibold justify-end items-center text-right'>Số tham chiếu (Ref ID)</p>
+                    <p className='flex flex-1 justify-start items-center text-left'>{maskRefCode(data.refCode)}</p>
                 </div>
                 <div className='flex flex-row w-full items-center justify-between hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100 gap-2'>
                     <p className='flex flex-1 font-semibold justify-end items-center text-right'>Số tiền</p>

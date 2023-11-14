@@ -74,3 +74,12 @@ export const GetMedia = () => {
     //if (matchXs) return 'xs'
     return 'xs'
 }
+
+export const maskRefCode = (refCode) => {
+    if (refCode) {
+        if (refCode.length < 8) return refCode
+        return '********'.concat(refCode.substring(refCode.length - 8))
+    }
+
+    return refCode
+}

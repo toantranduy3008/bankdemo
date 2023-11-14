@@ -6,7 +6,7 @@ import dayjs from "dayjs"
 import NotificationServices from "../../services/notificationServices/NotificationServices"
 import { authHeader } from "../../services/AuthServices"
 import axios from "axios"
-import { numberWithCommas, setBadge } from "../../services/Utilities"
+import { numberWithCommas, setBadge, maskRefCode } from "../../services/Utilities"
 import { IconDiscountCheck, IconLoader, IconExclamationCircle, IconSearch } from "@tabler/icons-react"
 
 const Inquiry = () => {
@@ -35,6 +35,7 @@ const Inquiry = () => {
 
             })
             .catch(err => {
+                setData([])
                 const { status, statusText } = err.response
                 NotificationServices.error(`${status}: ${statusText}`)
             })
@@ -53,11 +54,11 @@ const Inquiry = () => {
     const rows = data.map((element, index) => (
         <Table.Tr key={element.trace_no}>
             <Table.Td className="text-sm">{index + 1}</Table.Td>
-            <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{element.ref_code}</Table.Td>
+            <Table.Td className=" h-full text-sky-500 hover:text-sky-700 hover:cursor-pointer text-sm" onClick={(e) => handleShowDetailTransaction(e, element)}>{maskRefCode(element.ref_code)}</Table.Td>
             <Table.Td className="text-sm">{element.trace_no}</Table.Td>
             <Table.Td className="text-sm">{setBadge(element.respcode)}</Table.Td>
-            <Table.Td className="text-sm">Vinabank</Table.Td>
-            <Table.Td className="text-sm">Đông Á Bank</Table.Td>
+            <Table.Td className=" text-sm gap-1">Vinabank <img src="./NHPL.svg" className="w-5" /></Table.Td>
+            <Table.Td className=" text-sm gap-1">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></Table.Td>
             <Table.Td className="text-sm">{numberWithCommas(element.amount)}</Table.Td>
             <Table.Td className="text-sm">{element.local_time}</Table.Td>
         </Table.Tr>
@@ -86,6 +87,7 @@ const Inquiry = () => {
 
             })
             .catch(err => {
+                setData([])
                 const { status, statusText } = err.response
                 NotificationServices.error(`${status}: ${statusText}`)
             })
@@ -129,10 +131,10 @@ const Inquiry = () => {
                             size="xl"
                             variant="filled"
                             color="violet"
-                            className="w-full border-none rounded-none"
+                            className="flex w-full border-none rounded-none gap-1"
 
                         >
-                            {loading ? <IconLoader /> : <IconSearch />}
+                            Tra cứu {loading ? <IconLoader /> : <IconSearch />}
                         </ActionIcon>
                     </div>
                 </div>
@@ -149,7 +151,7 @@ const Inquiry = () => {
                             track: classes.track
                         }}
                     />
-                    <p className="text-white text-sm m-0">* Mã giao dịch bao gồm 6 ký tự hoặc để trống.</p>
+                    <p className="text-white text-sm m-0">* Mã giao dịch bao gồm 8 ký tự hoặc để trống.</p>
                     <p className="text-white text-sm m-0">* Trường hợp không nhập mã giao dịch, hệ thống sẽ tìm ra 10 giao dịch gần nhất trong ngày tìm kiếm.</p>
                 </div>
             </div>
@@ -179,9 +181,9 @@ const Inquiry = () => {
                                 >
                                     <div className="flex flex-row w-full gap-2">
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{`Giao dịch ${data.length > 1 ? index + 1 : ''}`}</p>
-                                        <p className="flex flex-1  justify-start items-center">{item.ref_code}</p>
+                                        <p className="flex flex-1  justify-start items-center">{maskRefCode(item.ref_code)}</p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">{item.trace_no}</p>
-                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Vina Bank</p>
+                                        <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Vina Bank </p>
                                         <p className="flex flex-1 xs:hidden lg:flex justify-start items-center">Đông Á Bank</p>
                                         <p className="flex flex-1 justify-start items-center">{setBadge(item.respcode)}</p>
                                         <p className="flex flex-1 justify-start items-center">{numberWithCommas(item.amount)}</p>
@@ -195,7 +197,7 @@ const Inquiry = () => {
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
                                                     <p className="flex flex-1 font-semibold  justify-start items-center">Ngân hàng phát lệnh</p>
-                                                    <p className="flex flex-1 justify-start items-center">Vina Bank</p>
+                                                    <p className="flex flex-1 justify-start items-center gap-2">Vina Bank <img src="./NHPL.svg" className="w-5" /></p>
                                                 </div>
                                             </div>
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -231,7 +233,7 @@ const Inquiry = () => {
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
                                                     <p className="flex flex-1 font-semibold  justify-start items-center">Số tham chiếu (Ref ID)</p>
-                                                    <p className="flex flex-1 justify-start items-center">{item.ref_code}</p>
+                                                    <p className="flex flex-1 justify-start items-center">{maskRefCode(item.ref_code)}</p>
                                                 </div>
                                             </div>
 
@@ -243,7 +245,7 @@ const Inquiry = () => {
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
                                                 <div className="flex flex-row flex-grow">
                                                     <p className="flex flex-1 font-semibold  justify-start items-center">Ngân hàng nhận lệnh</p>
-                                                    <p className="flex flex-1 justify-start items-center">Đông Á Bank</p>
+                                                    <p className="flex flex-1 justify-start items-center gap-2">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></p>
                                                 </div>
                                             </div>
                                             <div className="flex flex-row justify-start items-center w-full h-full gap-2">
@@ -326,7 +328,7 @@ const Inquiry = () => {
                         </div>
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Mã tham chiếu (Ref ID)</p>
-                            <p className="flex flex-1 justify-start items-center text-sm">{modalData.ref_code}</p>
+                            <p className="flex flex-1 justify-start items-center text-sm">{maskRefCode(modalData.ref_code)}</p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
@@ -336,7 +338,7 @@ const Inquiry = () => {
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Ngân hàng chuyển</p>
-                            <p className="flex flex-1 justify-start items-center text-sm gap-4">Vinabank <img src="./TCB-logo.svg" className="w-10" /></p>
+                            <p className="flex flex-1 justify-start items-center text-sm gap-2">Vinabank <img src="./NHPL.svg" className="w-5" /></p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
@@ -346,7 +348,7 @@ const Inquiry = () => {
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
                             <p className="flex flex-1 justify-end items-center font-semibold capitalize text-sm text-right">Ngân hàng nhận</p>
-                            <p className="flex flex-1 justify-start items-center text-sm gap-4">Đông Á Bank <img src="./DAB-logo.svg" className="w-10" /></p>
+                            <p className="flex flex-1 justify-start items-center text-sm gap-2">Đông Á Bank <img src="./NHNL.svg" className="w-5" /></p>
                         </div>
 
                         <div className="flex flex-row w-full gap-2 hover:bg-slate-200 hover:cursor-pointer even:bg-white odd:bg-slate-100">
