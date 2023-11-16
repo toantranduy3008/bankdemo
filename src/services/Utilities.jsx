@@ -78,7 +78,7 @@ export const GetMedia = () => {
 export const maskRefCode = (refCode) => {
     if (refCode) {
         if (refCode.length < 8) return refCode
-        return '********'.concat(refCode.substring(refCode.length - 8))
+        return refCode.substring(refCode.length - 8)
     }
 
     return refCode
